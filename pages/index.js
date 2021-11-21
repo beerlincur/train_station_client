@@ -8,48 +8,33 @@ import DlButton from "../components/Shared/Button";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ApplicationItemAdmin from "../components/Applications/ApplicationItemAdmin";
-import {ROLE} from "../utils/utils";
+import ticketActions from "../actions/ticket";
 
 
 const IndexPage = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
 
-  const { applicationsList, loader } = useSelector(state => state.application);
-  const { currentUser } = useSelector(state => state.user);
-
-  const currentRole = currentUser && currentUser.role;
+  const { ticketsList, loader } = useSelector(state => state.ticket)
 
   useEffect(() => {
     dispatch(ticketActions.getAllTickets());
   }, [])
 
-  let Item
-  switch (currentRole) {
-    case ROLE.individual:
-      Item = ApplicationItem
-      break;
-    case ROLE.admin:
-      Item = ApplicationItemAdmin
-      break;
-    default:
-      Item = () => <div style={{ display: 'none' }} />
-      break;
-  }
   return (
       <>
-        <DlHeadTitle title="Заявки" />
+        <DlHeadTitle title="Билеты" />
         <div className={st.title_container}>
-          <h1 className={st.title}>Заявки</h1>
+          <h1 className={st.title}>Билеты</h1>
         </div>
         <div className={st.applicationsList}>
           {loader ?
               <div className={st.no_applications_label}>Загрузка...</div>
               :
-              (applicationsList.length === 0 ?
-                      <div className={st.no_applications_label}>Заявок пока нет</div>
+              (ticketsList.length === 0 ?
+                      <div className={st.no_applications_label}>Билетов пока нет</div>
                       :
-                      applicationsList.map((item, i) => {
+                      ticketsList.map((item, i) => {
                         return (
                             <div key={i} className={st.applicationsItem}>
                               <Item {...item} />

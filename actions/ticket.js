@@ -4,7 +4,7 @@ import {API_URL} from "../utils/constants";
 import axios from "axios";
 
 export const TICKET_LIST_LOADING = "TICKET_LIST_LOADING";
-export const GET_APPLICATION_LIST_SUCCESS = "GET_APPLICATION_LIST_SUCCESS";
+export const GET_TICKET_LIST_SUCCESS = "GET_TICKET_LIST_SUCCESS";
 
 const ticketActions = {
     getAllTickets: (callback, onError) => {
@@ -12,7 +12,7 @@ const ticketActions = {
             dispatch({ type: TICKET_LIST_LOADING, loader: true });
             try {
                 const resp = await axios.get(`${API_URL}/tickets/feed`, getTokenConfig());
-                dispatch({ type: GET_APPLICATION_LIST_SUCCESS, applicationsList: resp.data });
+                dispatch({ type: GET_TICKET_LIST_SUCCESS, ticketsList: resp.data });
 
                 if (typeof callback === "function") {
                     callback.call();

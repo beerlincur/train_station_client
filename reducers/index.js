@@ -1,10 +1,11 @@
 import user from './user';
 import { combineReducers } from "redux"
 import { CLEAR_STORE } from '../actions/user';
-
+import ticket from './ticket'
 
 const appReducers = combineReducers({
     user,
+    ticket
 })
 
 const rootReducer = (state, action) => {
