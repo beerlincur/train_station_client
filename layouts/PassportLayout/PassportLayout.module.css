@@ -1,0 +1,175 @@
+.bg {
+    background-color: #1c1c1c;
+    position: relative;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
+    z-index: 1;
+}
+.content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 7;
+    overflow-y: auto;
+    background-color: rgba(28, 28, 28, 0.1);
+}
+.inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 28, 28, 0.08);
+    z-index: 3;
+}
+.title {
+    position: relative;
+    font-weight: 900;
+    color: #fff;
+    z-index: 4;
+    font-size: 36px;
+    line-height: 1.4;
+    padding: 24px;
+}
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+.fantastic {
+    background: linear-gradient(135deg, #EC2F2F 14.73%, #DD2FEC 100%);
+    height: 0;
+    transform: rotate(135deg);
+    width: 30%;
+    padding-top: 30%;
+    left: 8.34%;
+    top: -15%;
+}
+.hot {
+    background: linear-gradient(135deg, #ECD92F 14.73%, #EC2F46 100%);
+    right: 5%;
+    height: 0;
+    width: 30%;
+    padding-top: 30%;
+    top: -18%;
+}
+.cool {
+    background: linear-gradient(135deg, #2FECEC 14.73%, #4A2FEC 100%);
+    height: 0;
+    width: 69%;
+    padding-top: 69%;
+    left: 43%;
+    top: 64%;
+}
+.glass {
+    margin: auto;
+    background-color: #fff;
+    width: calc(100% - 24px);
+    max-width: 100%;
+    min-height: 100px;
+    background: linear-gradient(117.54deg, rgba(255, 255, 255, 0.5) -19.85%, rgba(235, 235, 235, 0.367354) 4.2%, rgba(224, 224, 224, 0.287504) 13.88%, rgba(212, 212, 212, 0.21131) 27.98%, rgba(207, 207, 207, 0.175584) 37.8%, rgba(202, 202, 202, 0.143432) 44.38%, rgba(200, 200, 200, 0.126299) 50.54%, rgba(196, 196, 196, 0.1) 60.21%);
+    z-index: 3;
+    backdrop-filter: blur(3rem);
+    box-shadow: 0px 1px 24px -1px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+.background {
+    position: absolute;
+    z-index: 1;
+}
+.leftBottom {
+    width: calc(751 * 100% / 1440);
+    padding-top: calc(751 * 100% / 1440);
+    height: calc(724 * 100% / 980);
+    background-image: url(/bg/left-bottom.svg);
+    top: calc(605 * 100% / 980);
+    left: calc(0 * 100% / 1440);
+    opacity: 0.8;
+    background-repeat: no-repeat;
+}
+.topCenter {
+    width: calc(361 * 100% / 1440);
+    padding-top: calc(361 * 100% / 1440);
+    height: calc(348 * 100% / 980);
+    background-image: url(/bg/top-center.svg);
+    top: calc(0 * 100% / 980);
+    left: calc(641 * 100% / 1440);
+    background-repeat: no-repeat;
+}
+.rightBottom {
+    width: calc(361 * 100% / 1440);
+    padding-top: calc(361 * 100% / 1440);
+    height: calc(348 * 100% / 980);
+    background-image: url(/bg/right-bottom.svg);
+    top: calc(630 * 100% / 980);
+    right: calc(0 * 100% / 1440);
+    opacity: 0.8;
+}
+.footer {
+    width: 100%;
+    display: flex;
+    padding: 32px 12px;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.footerLink {
+    color: #fff;
+}
+
+@media screen and (min-width: 600px){
+    .title {
+        left: 80px;
+        top: 0px;
+        font-size: 64px;
+        line-height: 56px;
+        position: absolute;
+    }
+    .inner {
+        top: 50%;
+        transform: translateY(-35%);
+    }
+    .fantastic {
+        width: calc(581.34 * 100% / 1440);
+        padding-top: calc(581.34 * 100% / 1440);
+        left: calc(120 * 100% / 1440);
+        top: calc(-70 * 100% / 980);
+    }
+    .hot {
+        width: 36%;
+        padding-top: 36%;
+        top: -10%;
+        right: 1px;
+    }
+    .cool {
+        width: 69%;
+        padding-top: 69%;
+        left: 33%;
+        top: 59%;
+    }
+    .glass {
+        width: calc(600 * 100% / 1440);
+        min-width: 600px;
+        min-height: 100px;
+        border-radius: 16px;
+    }
+    .footer {
+        padding: 32px;
+    }
+}

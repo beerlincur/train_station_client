@@ -1,0 +1,184 @@
+.application {
+    background-color: #F7F9FA;
+    border-radius: 16px;
+    position: relative;
+    color: #000000;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+.application:hover {
+    box-shadow: 0 2px 8px rgba(38, 39, 54, 0.16);
+}
+.noHover {
+    cursor: initial;
+}
+.noHover:hover {
+    box-shadow: initial;
+}
+.content {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    flex-wrap: wrap;
+}
+.isDone, .isCourier {
+    flex-wrap: wrap;
+}
+.no_applications_label {
+    text-align: center;
+    margin-top: 30px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #969696;
+}
+.info {
+    width: 100%;
+}
+.status {
+    width: 100%;
+    margin-left: auto;
+    min-width: 300px;
+    max-width: 350px;
+    display: none;
+}
+.statusDone {
+    max-width: 520px;
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.document {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.docCourier {
+    min-width: 180px;
+    margin-right: 16px;
+}
+.courierInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+.courierItem {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 16px;
+}
+.address {
+    flex-grow: 1;
+    min-width: 170px;
+    margin-right: 16px;
+}
+.courierSelector {
+    flex-grow: 1;
+    min-width: 170px;
+    margin-right: 16px;
+}
+.addressTitle {
+    font-size: 12px;
+    color: #969696;
+    margin-bottom: 5px;
+}
+.addressSubtitle {
+    font-size: 14px;
+    line-height: 18px;
+}
+.bigger_subtitle {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+    color: #1C1C1C;
+}
+.footer {
+    padding: 0 16px 14px;
+    cursor: initial;
+}
+.footerTitle {
+    cursor: pointer;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.footerTitle:hover .footerIcon {
+    background-color: #e8e8e8;
+}
+.footerIcon {
+    margin-right: 5px;
+    color: #585757;
+    width: 28px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    transform: rotatex(180deg);
+    transition: all .3s ease-in-out;
+}
+.iconCollapsed {
+    transform: rotatex(0deg);
+}
+.footerContent {
+    transition: max-height 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.isCollapsed {
+    max-height: 0px;
+}
+.table {
+    margin-top: 1.5rem;
+}
+.isValSuccess {
+    color: #00BA34;
+    font-weight: 500;
+}
+.isValError {
+    color: #E92C2C;
+    font-weight: 500;
+}
+@media screen and (min-width: 375px) {
+    .addButton {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .content {
+        flex-wrap: nowrap;
+    }
+    .title {
+        margin-right: 50px;
+        font-size: 48px;
+        line-height: 56px;
+    }
+    .status {
+        display: flex;
+    }
+    .courierInfo {
+        flex-wrap: nowrap;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .isCourier {
+        flex-wrap: nowrap;
+    }
+    .courierInfo {
+        flex-wrap: nowrap;
+        margin-top: 0;
+    }
+}

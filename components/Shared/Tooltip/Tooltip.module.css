@@ -1,0 +1,64 @@
+.tooltip {
+    display: inline-flex;
+}
+.content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #585757;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 16px;
+    z-index: 999;
+    box-shadow: 0px 4px 12px rgba(57, 120, 241, 0.1);
+    transition: all 0.2s ease-out;
+}
+.contentInner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.isContent {
+    padding: 0.75rem 0.85rem;
+}
+.contentInner::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.isTop::before {
+    border-width: 16px 8px 16px 8px;
+    border-color: #585757 transparent transparent transparent;
+    top: calc(100% - 4px);
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.isRight::before {
+    top: 50%;
+    left: 4px;
+    transform: translate(-100%, -50%);
+    border-width: 8px 16px 8px 16px;
+    border-color:  transparent #585757 transparent transparent;
+}
+.isBottom::before {
+    top: 4px;
+    left: 50%;
+    border-width: 16px 8px 16px 8px;
+    border-color:  transparent  transparent #585757 transparent;
+    transform: translate(-50%, -100%);
+}
+.isLeft::before {
+    left: calc(100% - 4px);
+    top: 50%;
+    transform: translate(0, -50%);
+    border-width: 8px 0 8px 16px;
+    border-color:  transparent transparent transparent #585757;
+}
+.reference {
+    display: block;
+}

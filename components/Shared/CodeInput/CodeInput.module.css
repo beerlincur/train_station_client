@@ -1,0 +1,10 @@
+.code {
+    display: flex;
+}
+
+.item {
+    margin-right: 8px;
+}
+.item:last-of-type {
+    margin-right: 0px;
+}

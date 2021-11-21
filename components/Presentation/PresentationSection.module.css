@@ -1,0 +1,33 @@
+.section {
+    padding: 2rem 0;
+}
+.items {
+    margin-top: 1.5rem;
+}
+.dark {
+    background-color: rgba(28, 28, 28, 0.803);
+    padding: 1rem;
+    border-radius: 8px;
+}
+.input {
+    margin-right: 1rem;
+}
+.input:last-of-type {
+    margin-right: 0;
+}
+.flex {
+    --gap-size: 18px;
+    display: flex;
+    align-items: stretch;
+    margin-left: calc(var(--gap-size) * -0.5);
+    margin-right: calc(var(--gap-size) * -0.5);
+    margin-bottom: calc(var(--gap-size) * -1);
+}
+.wrap {
+    flex-wrap: wrap;
+}
+.flexItem {
+    padding-left: calc(var(--gap-size) * 0.5);
+    padding-right: calc(var(--gap-size) * 0.5);
+    padding-bottom: calc(var(--gap-size) * 1);
+}

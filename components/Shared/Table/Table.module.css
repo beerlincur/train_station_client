@@ -1,0 +1,83 @@
+.container {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    width: 100%;
+    max-width: calc(100vw - 40px);
+}
+.table, .cell {
+    border: none;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #5E6366;
+}
+.fixed {
+    table-layout: fixed;
+}
+.row {
+    transition: all .3s ease-in-out;
+    border-bottom: 1px solid #E3E5E5;
+}
+.row:not(.heading):hover {
+    background-color: var(--color-asphalt-light);
+}
+.tooltip {
+    font-size: 12px;
+    line-height: 18px;
+    color: hsla(43, 95%, 85%, 0.932);
+}
+.cell {
+    --min-width: 0px;
+    text-align: left;
+    padding: 1rem .5rem;
+    min-width: var(--min-width);
+}
+.nowrap {
+    white-space: nowrap;
+}
+.cellTooltip {
+    padding: 0;
+}
+.tooltipContent {
+    border-radius: 16px;
+    background-color: currentColor;
+    margin: 1rem 0 0.5rem;
+    padding: 8px 16px;
+    display: inline-flex;
+    position: relative;
+}
+.tooltipContent::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 0 8px 16px 8px;
+    border-style: solid;
+    border-color: transparent transparent currentColor transparent;
+    left: 36px;
+    bottom: calc(100% - 4px);
+}
+.tooltipInner {
+    color: #585757;
+    font-weight: 500;
+}
+.header {
+    height: 70px;
+    color: #919699;
+    font-weight: normal;
+}
+.wrap {
+    white-space: initial;
+}
+.highlight:nth-child(even) {
+    background-color: var(--color-grey);
+}
+
+@media(min-width: 600px){
+    .cell {
+        --min-width: 0px !important;
+    }
+}

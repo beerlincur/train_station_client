@@ -1,0 +1,38 @@
+.link {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all .3s ease-out;
+    text-decoration: none;
+    cursor: pointer;
+    color: #585757;
+}
+.active {
+    color: #000;
+}
+.icon {
+    border-radius: 45px;
+    width: 60px;
+    height: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+.active .icon {
+    background: #E6F3FE;
+    color: #0085FF;
+}
+
+@media(min-width: 600px) {
+    .link {
+        align-items: center;
+        flex-direction: column;
+    }
+    .icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}

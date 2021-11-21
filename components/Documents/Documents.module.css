@@ -1,0 +1,64 @@
+@media print {
+    .table tr {
+        page-break-inside: avoid;
+    }
+}
+
+@page {
+    margin: 20mm 10mm 20mm 30mm;
+}
+
+.table {
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.table.fullsize {
+    width: 100%;
+}
+
+.table.noBorders th, .table.noBorders td {
+    border: none;
+}
+
+.table.noRules th, .table.noRules td {
+    border: none;
+}
+
+.table.noMarBot {
+    margin-bottom: 0;
+}
+
+.table.backGreen {
+    background-color: rgb(184, 214, 182);
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid green;
+}
+
+.colorRed {
+    color: red;
+}
+
+.tableCaption {
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+.centered {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.righted {
+   float: right;
+    justify-content: right;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

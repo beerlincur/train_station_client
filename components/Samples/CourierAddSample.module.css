@@ -1,0 +1,55 @@
+.formAdd {
+
+}
+.formAddItem {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+.formAddItem:last-of-type {
+    margin-bottom: 0;
+}
+.formAddItemInline {
+    flex-wrap: wrap;
+}
+.formAddItemInner {
+    margin-bottom: 1rem;
+}
+.formAddItemInner:last-of-type {
+    margin-bottom: 0;
+}
+.formAddItemInput {
+    margin-right: 1rem;
+}
+.formAddItemScan {
+    flex-grow: 0;
+}
+.formAddItemVolume {
+    display: flex;
+}
+.formAddVol {
+    width: 130px;
+}
+.formAddUnit {
+    flex-grow: 1;
+}
+.formAddVolInput {
+    border-right: transparent !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+@media screen and (min-width: 600px){
+    .formAddItem {
+        margin-bottom: 1.5rem;
+    }
+    .formAddItemInline {
+        flex-wrap: nowrap;
+    }
+    .formAddItemInner {
+        margin-right: 1rem;
+    }
+    .formAddItemInner:last-of-type {
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,9 @@
+.subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: hsla(0, 0%, 0%, 0.5);
+}
+.subtitle:not(:last-child) {
+    margin-bottom: 0.75rem;
+}

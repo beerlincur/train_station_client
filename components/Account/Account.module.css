@@ -1,0 +1,129 @@
+.notifications {
+    margin-top: 48px;
+}
+
+.container {
+    width: 100%;
+}
+
+.main {
+    max-width: 631px;
+}
+
+.title {
+    font-size: 24px;
+    line-height: 28px;
+    color: #1C1C1C;
+    margin-top: 1rem;
+}
+
+.formItem {
+    margin-top: 24px;
+}
+.formItemInner {
+    flex-wrap: wrap;
+}
+.formInput {
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+}
+.formInput:last-of-type {
+    margin-bottom: 0;
+}
+
+.forms_inline {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.forms_inline_item {
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+}
+.forms_inline_item:last-of-type {
+    margin-bottom: 0;
+}
+.form_mr {
+    flex-grow: 1;
+    margin-right: 16px;
+}
+
+.bigger_subtitle {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+    color: #1C1C1C;
+}
+
+.footer_buttons {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.footer_button {
+    flex: 0 0 100%;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-bottom: 24px;
+}
+
+.checkbox_div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* для экранов больше 600px */
+@media screen and (min-width: 600px) {
+    .title {
+        font-size: 36px;
+        line-height: 48px;
+    }
+    .formItemInner {
+        flex-wrap: nowrap;
+    }
+    .formInput {
+        flex: 0 1 auto;
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+    .formInput:last-of-type {
+        margin-right: 0;
+    }
+    .forms_inline {
+        flex-wrap: nowrap;
+    }
+    .forms_inline_item {
+        flex: 0 1 auto;
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+    .forms_inline_item:last-of-type {
+        margin-right: 0;
+    }
+    .footer_buttons {
+        margin-top: 48px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .footer_button {
+        flex: 0 0 35%;
+    }
+}
+/* для экранов больше 900px */
+@media screen and (min-width: 900px) {
+    .container {
+        flex-wrap: nowrap;
+    }
+    .title {
+        font-size: 44px;
+        line-height: 56px;
+    }
+    .sidebar {
+        width: 265px;
+        margin-left: 16px;
+        margin-top: 0;
+    }
+}

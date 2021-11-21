@@ -1,0 +1,38 @@
+.card {
+    border-radius: 16px;
+    padding: 24px 16px;
+    position: relative;
+    margin-bottom: 24px;
+}
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #E4F2FF;
+    z-index: -1;
+    opacity: 0.2;
+    border-radius: inherit;
+}
+.primary::after {
+    background-color: var(--color-primary);
+}
+.info::after {
+    background-color: var(--color-info);
+}
+.success::after {
+    background-color: var(--color-success);
+}
+.warning::after {
+    background-color: var(--color-warning);
+}
+.error::after {
+    background-color: var(--color-error);
+}
+.icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

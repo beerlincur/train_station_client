@@ -1,0 +1,19 @@
+.ta {
+    --gap-x: 1rem;
+  display: flex;
+  align-items: baseline;
+  margin-left: calc(var(--gap-x) * -0.5);
+  margin-right: calc(var(--gap-x) * -0.5);
+  margin-bottom: calc(var(--gap-x) * -1);
+}
+.taItem {
+  padding-left: calc(var(--gap-x) * 0.5);
+  padding-right: calc(var(--gap-x) * 0.5);
+  padding-bottom: calc(var(--gap-x) * 1);
+}
+
+@media screen and (min-width: 600px){
+  .delete {
+    margin-left: 0.75rem;
+  }
+}

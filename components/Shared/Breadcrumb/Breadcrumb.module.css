@@ -1,0 +1,27 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 400;
+    transition: color .4s ease-in-out;
+}
+.link {
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+.link:hover {
+    color: rgba(0, 0, 0, 1);
+}
+.active {
+    color: rgba(145, 150, 153, 1);
+}
+.separator {
+    margin: 0 9px;
+}
+.item {
+    display: inline-flex;
+    align-items: center;
+}
+.item:last-child .separator {
+    display: none;
+}

@@ -1,0 +1,73 @@
+.main {
+    display: inline-flex;
+    text-decoration: none;
+    overflow-x: hidden;
+    align-items: center
+}
+.avatar {
+    --avatar-size: 40px;
+    position: relative;
+    flex: 0 0 var(--avatar-size);
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-align: center;
+    background-color: #b8b8b8;
+    font-weight: 700;
+    color: #fff;
+    overflow: hidden;
+}
+.info {
+    margin-left: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 500;
+    display: none;
+    overflow-x: hidden;
+}
+.name {
+    color: #1c1c1c;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.phone {
+    margin-top: 3px;
+    color: #969696;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.role {
+    /* margin-top: 5px; */
+    color: #969696;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media(min-width: 600px){
+    .avatar {
+        --avatar-size: 48px;
+        font-size: 24px;
+    }
+    
+}
+
+@media(min-width: 750px){
+    .avatar {
+        --avatar-size: 60px;
+    }
+    .info {
+        display: flex;
+    }
+}
