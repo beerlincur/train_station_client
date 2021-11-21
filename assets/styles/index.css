@@ -1,0 +1,87 @@
+@import url(./fonts.css);
+
+*, *::before, *::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --color-default: #262C40;
+    --color-primary: #1C1C1C;
+    --color-success: #00BA34;
+    --color-info: #1890FF;
+    --color-warning: #FFD952;
+    --color-warning--light: #FDE9B5;
+    --color-error: #E92C2C;
+    --color-disabled: #E8E8E8;
+    --color-grey:  #f5f7f8;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: #fff;
+}
+.container {
+    width: 100%;
+    padding: 0 16px;
+    max-width: 100vw;
+    margin: 0 auto;
+}
+
+.dl-btn .dl-icon {
+    margin-right: 8px;
+}
+.dl-btn--icon .dl-icon {
+    margin-right: 0;
+}
+
+@media screen and (min-width: 600px){
+    .container {
+        padding: 0 40px;
+        max-width: 1000px;
+    }
+}
+
+@media screen and (min-width: 1040px){
+    .container {
+        padding: 0;
+    }
+}
+
+.pinkRow {
+    background-color: rgba(248, 124, 144, 0.3);
+}
+.greenCol {
+    background-color: rgba(0, 128, 0, 0.2);
+}
+.modal-open {
+    overflow: hidden;
+}
+.dl-disabled {
+    opacity: 0.48;
+    pointer-events: none;
+}
+.dl-scrollbar ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    margin-right: 4px;
+
+}
+.dl-scrollbar ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #ccc;
+    border-radius: 10px;
+}
+.dl-scrollbar ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(153, 153, 153, 0.469);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .4);
+}
+.dl-scrollbar ::-webkit-scrollbar-track:hover {
+    background-color: rgba(153, 153, 153, 0.9);
+}

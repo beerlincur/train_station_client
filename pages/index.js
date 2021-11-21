@@ -1,13 +1,10 @@
 import DefaultLayout from "../layouts/DefaultLayout";
-import ApplicationItem from "../components/Applications/ApplicationItem";
-import ApplicationItemCourier from "../components/Applications/ApplicationItemCourier";
 import { useRouter } from "next/router";
 import DlHeadTitle from "../components/Shared/HeadTitle";
 import st from "./index.module.css";
 import DlButton from "../components/Shared/Button";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ApplicationItemAdmin from "../components/Applications/ApplicationItemAdmin";
 import ticketActions from "../actions/ticket";
 
 
