@@ -19,8 +19,8 @@ const LayoutHeaderUser = () => {
             <a className={st.main}>
                 <div className={st.avatar}>{getUserInitials(currentUser)}</div>
                 <div className={st.info}>
-                    <div className={st.name}>{currentUser.first_name + " " + currentUser.last_name}</div>
-                    <div className={st.phone}>{getDisplyedPhoneNumber(currentUser.phone)}</div>
+                    <div className={st.name}>{currentUser.first_name + " " + currentUser.second_name}</div>
+                    <div className={st.phone}>{currentUser.passport}</div>
                     <div className={st.role}>{userRoles[currentUser.role]}</div>
                 </div>
             </a>
