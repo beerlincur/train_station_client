@@ -37,7 +37,8 @@ const IndexPage = () => {
                       ticketsList.map((item, i) => {
                         return (
                             <div key={i} className={st.applicationsItem}>
-                              <Item {...item} />
+                              {/*<Item {...item} />*/}
+                                <p>hello</p>
                             </div>
                         )
                       })

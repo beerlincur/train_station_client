@@ -17,9 +17,6 @@ const LoginInnerLayout = ({ title, ...props }) => {
         {props.successBtn}
         {props.defaultBtn}
       </div>
-      <div className={cx(st.item, st.terms)}>
-        Нажимая на кнопку «Получить код», вы принимаете условия  <a href="/privacy-policy" target="_blank">Политики обработки и защиты персональных данных</a>, даю  согласие на <a href="/terms-of-service" target="_blank">обработку персональных данных</a>
-      </div>
     </div>
   )
 }

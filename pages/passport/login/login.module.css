@@ -1,0 +1,53 @@
+.login {
+    padding: 24px;
+}
+.title {
+    font-size: 24px;
+    line-height: 33px;
+    font-weight: 700;
+    color: #fff;
+}
+.item {
+    margin-top: 1rem;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.action {
+    flex: 0 0 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 16px;
+}
+.terms {
+    color: #E8E8E8;
+    font-size: 12px;
+    line-height: 16px;
+    opacity: 0.64;
+}
+.terms a {
+    color: inherit;
+}
+
+@media screen and (min-width: 600px) {
+    .login {
+        padding: 40px;
+    }
+    .title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+    .item {
+        margin-top: 1.5rem;
+    }
+    .actions {
+        flex-wrap: nowrap;
+    }
+    .action {
+        flex: 0 0 50%;
+    }
+}

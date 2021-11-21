@@ -69,7 +69,7 @@ const AccountClient = () => {
             company_name: companyName || null
         }
 
-        dispatch(userActions.updateProfile(obj, currentUser.id, () => {
+        dispatch(userActions.updateUser(obj, currentUser.id, () => {
             dispatch(userActions.getCurrentUser())
             DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
         }));
@@ -92,7 +92,7 @@ const AccountClient = () => {
         const obj = {
             is_promoted: val,
         }
-        dispatch(userActions.updateProfile(obj, currentUser.id, () => {
+        dispatch(userActions.updateUser(obj, currentUser.id, () => {
             DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
         }));
     }
@@ -102,7 +102,7 @@ const AccountClient = () => {
         const obj = {
             is_notified: val,
         }
-        dispatch(userActions.updateProfile(obj, currentUser.id, () => {
+        dispatch(userActions.updateUser(obj, currentUser.id, () => {
             DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
         }));
     }
