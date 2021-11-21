@@ -12,11 +12,31 @@ export const CLEAR_STORE = "CLEAR_STORE";
 
 
 const userActions = {
+    loginUser: (obj, callback) => {
+        return async dispatch => {
+            dispatch({ type: USER_LOADING, loader: true })
+            try {
+                console.log('before request')
+                console.log(`${API_URL}/login`)
+                const resp = await axios.post(`http://localhost:8000/api/login`, obj)
+                console.log('after resp')
+                jsCookie.set(TOKEN_NAME, resp.data.access_token, { expires: 30 });
+                if (typeof callback === "function") {
+                    callback.call();
+                }
+            } catch (error) {
+                console.log(`error ${error}`)
+                DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 })
+            } finally {
+                dispatch({ type: USER_LOADING, loader: false })
+            }
+        }
+    },
     getCurrentUser: (token, callback) => {
         return async dispatch => {
             dispatch({ type: USER_LOADING, loader: true })
             try {
-                const resp = await axios.get(`${API_URL}/user`, getTokenConfig(token))
+                const resp = await axios.get(`http://localhost:8000/api/user`, getTokenConfig(token))
                 dispatch({ type: GET_USER_SUCCESS, user: resp.data })
                 // dispatch({ type: GET_USER_SUCCESS, user: { ...resp.data, role: "laboratory" } })
 
@@ -34,7 +54,7 @@ const userActions = {
         return async dispatch => {
             dispatch({ type: USER_LOADING, loader: true })
             try {
-                const resp = await axios.post(`${API_URL}/register`, userData)
+                const resp = await axios.post(`http://localhost:8000/api/register`, userData)
                 // dispatch({ type: GET_USER_SUCCESS, user: resp.data })
                 if (typeof callback === "function") callback.call();
             } catch (error) {
@@ -51,7 +71,7 @@ const userActions = {
             dispatch({type: UPDATE_PROFILE_LOADING, loader: true});
             try {
                 const body = JSON.stringify(obj);
-                const resp = await axios.put(`${API_URL}/user?user_id=${userId}`, body, getTokenConfig());
+                const resp = await axios.put(`http://localhost:8000/api/user?user_id=${userId}`, body, getTokenConfig());
 
                 dispatch({type: UPDATE_PROFILE_SUCCESS, currentUser: resp.data});
 

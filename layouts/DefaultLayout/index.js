@@ -20,12 +20,9 @@ const DefaultLayout = (props) => {
         const token = jsCookie.get(TOKEN_NAME)
         if (!token || !isValidToken(token)) {
             let redirectPath = "/passport/login"
-            // console.log(`asPath`, asPath)
-            // console.log(`isReady`, isReady)
             if (isReady) {
                 redirectPath += `?from=${asPath}`
             }
-            // console.log(`redirectPath`, redirectPath)
             return push(redirectPath)
         }
         if (!currentUser) {
@@ -46,7 +43,7 @@ const DefaultLayout = (props) => {
             <div className={st.loaderWrapper}>
                 <div className={st.loader}>
                     <DlIcon className={st.spinner} name="spinner" />
-                    <span>Loading...</span>
+                    <span>Загрузка...</span>
                 </div>
             </div>
         )

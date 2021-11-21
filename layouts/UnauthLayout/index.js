@@ -10,7 +10,7 @@ const UnauthLayout = (props) => {
         <div className={st.layout}>
             <header className={st.header}>
                 <Link href="/">
-                    <a className={st.title}>DokuchaevLab</a>
+                    <a className={st.title}>Железнодорожная станция</a>
                 </Link>
                 <DlButton onClick={() => push("/passport/login")} type="success" size="sm">Войти</DlButton>
             </header>
@@ -20,11 +20,6 @@ const UnauthLayout = (props) => {
                     {props.children}
                 </div>
             </main>
-
-            <div className={st.footer}>
-                <UnauthLayoutFooter />
-            </div>
-
         </div>
     )
 }

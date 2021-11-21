@@ -31,7 +31,7 @@ const DefaultLayoutHeader = () => {
     return (
         <div className={st.main}>
             <Link href="/">
-                <a className={st.title}>DokuchaevLab</a>
+                <a className={st.title}>Железнодорожная станция</a>
             </Link>
             <div className={cx(st.links, { [st.active]: menuOpened })}>
                 <div className={st.link}>
@@ -42,7 +42,7 @@ const DefaultLayoutHeader = () => {
                         <LayoutNavLink title="QR-коды" icon="qr-code" href="/qr-codes" />
                     </div>
                     :
-                    (currentUser.role === ROLE.laboratory ?
+                    (currentUser.role_id === 1 ?
                         <div className={st.link}>
                             <LayoutNavLink title="Лаборанты" icon="laborants" href="/assistants" />
                         </div>
