@@ -1,0 +1,158 @@
+.application {
+    background-color: #F7F9FA;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    color: #000000;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+.application:hover {
+    box-shadow: 0 2px 8px rgba(38, 39, 54, 0.16);
+}
+.isDone, .isCourier {
+    flex-wrap: wrap;
+}
+.info {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: auto;
+}
+.status {
+    width: 100%;
+    margin-left: auto;
+    min-width: 300px;
+    max-width: 350px;
+    display: none;
+}
+.statusDone {
+    max-width: 520px;
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.document {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.docCourier {
+    min-width: 180px;
+}
+.courierInfo {
+    --x-gap: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    margin-right: calc(0 - var(--x-gap));
+    margin-left: calc(0 - var(--x-gap));
+    margin-bottom: calc(-2 * var(--x-gap));
+}
+.courierItem {
+    padding-left: var(--x-gap);
+    padding-right: var(--x-gap);
+    margin-bottom: calc(2 * var(--x-gap));
+}
+.address {
+    min-width: 170px;
+}
+
+.addressTitle {
+    font-size: 12px;
+    color: #969696;
+    margin-bottom: 5px;
+}
+.addressSubtitle {
+    font-size: 14px;
+    line-height: 18px;
+}
+.tableContainer {
+    margin-top: 3rem;
+}
+.bigger_subtitle {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+    color: #1C1C1C;
+}
+.table {
+    margin-top: 1.5rem;
+}
+.courier_choosen_chips {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px 4px 12px;
+    white-space: nowrap;
+    background: #F0F0F0;
+    border-radius: 32px;
+    font-size: 12px;
+    color: #585757;
+}
+.chipTitle {
+    margin-left: 8px;
+    font-weight: 500;
+}
+@media screen and (min-width: 375px) {
+    .addButton {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .isDone {
+        flex-wrap: nowrap;
+    }
+    .title {
+        margin-right: 50px;
+        font-size: 48px;
+        line-height: 56px;
+    }
+    .status {
+        display: flex;
+    }
+    .info {
+        white-space: nowrap;
+        min-width: 350px;
+    }
+    .courierInfo {
+        flex-wrap: nowrap;
+    }
+    .courierSelector {
+        margin-left: auto;
+    }
+    .docCourier {
+        min-width: 200px;
+    }
+}
+
+.info {
+    width: 100%;
+}
+.number {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    margin-top: 8px;
+}
+
+.date {
+    font-size: 14px;
+}
+
+@media screen and (min-width: 900px) {
+    .isCourier {
+        flex-wrap: nowrap;
+    }
+    .courierInfo {
+        flex-wrap: nowrap;
+        margin-top: 0;
+    }
+}

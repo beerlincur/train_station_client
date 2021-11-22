@@ -34,24 +34,30 @@ const DefaultLayoutHeader = () => {
                 <a className={st.title}>Железнодорожная станция</a>
             </Link>
             <div className={cx(st.links, { [st.active]: menuOpened })}>
-                <div className={st.link}>
-                    <LayoutNavLink title="Заявки" icon="request" href="/" activeLinks={["/", "/applications/[pid]", "/applications/create"]} />
-                </div>
-                {currentUser.role === ROLE.admin ?
+                {currentUser.role_id === ROLE.admin ? (
+                    <>
                     <div className={st.link}>
-                        <LayoutNavLink title="QR-коды" icon="qr-code" href="/qr-codes" />
+                        <LayoutNavLink title="Проводники" icon="laborants" href="/conductors" />
                     </div>
+                    <div className={st.link}>
+                        <LayoutNavLink title="Поезда" icon="request" href="/trains" />
+                    </div>
+                    <div className={st.link}>
+                        <LayoutNavLink title="Станции" icon="request" href="/stations" />
+                    </div>
+                    </>
+                    )
                     :
-                    (currentUser.role_id === 1 ?
+                    (currentUser.role_id === ROLE.conductor ?
                         <div className={st.link}>
-                            <LayoutNavLink title="Лаборанты" icon="laborants" href="/assistants" />
+                            <LayoutNavLink title="Мои маршруты" icon="laborants" href="/conductor" />
                         </div>
                         :
                         <>
+                            <div className={st.link}>
+                                <LayoutNavLink title="Билеты" icon="request" href="/" activeLinks={["/"]} />
+                            </div>
                         </>
-                        // <div className={st.link}>
-                        //     <LayoutNavLink title="Уведомления" icon="notification" />
-                        // </div>
                     )
                 }
                 <div className={st.link}>

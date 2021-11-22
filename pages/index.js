@@ -2,10 +2,10 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import { useRouter } from "next/router";
 import DlHeadTitle from "../components/Shared/HeadTitle";
 import st from "./index.module.css";
-import DlButton from "../components/Shared/Button";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ticketActions from "../actions/ticket";
+import TicketItemClient from "../components/Ticket/TicketItemClient";
 
 
 const IndexPage = () => {
@@ -34,8 +34,7 @@ const IndexPage = () => {
                       ticketsList.map((item, i) => {
                         return (
                             <div key={i} className={st.applicationsItem}>
-                              {/*<Item {...item} />*/}
-                                <p>hello</p>
+                                <TicketItemClient {...item}/>
                             </div>
                         )
                       })

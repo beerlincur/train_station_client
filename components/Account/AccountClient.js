@@ -9,43 +9,31 @@ import jsCookie from "js-cookie";
 import {TOKEN_NAME} from "../../utils/constants";
 import userActions from "../../actions/user";
 import DomNotification from "../Shared/DomNotification";
-import InputMask from "react-input-mask"
-import {ROLE} from '../../utils/utils'
-import DlCheckbox from "../Shared/Checkbox";
 import DlBreadcrumb from "../Shared/Breadcrumb";
 
 const AccountClient = () => {
     const { push } = useRouter();
     const dispatch = useDispatch();
     const { currentUser } = useSelector(state => state.user);
-    const  currentUserId = currentUser && currentUser.id;
+    const  currentUserId = currentUser && currentUser.user_id;
 
-    const [address, setAddress] = useState("");
-    const [email, setEmail] = useState("");
-    const [taxNumber, setTaxNumber] = useState("");
-    const [regNumber, setRegNumber] = useState("");
-    const [companyName, setCompanyName] = useState("");
+
     const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [secondName, setSecondName] = useState("");
     const [middleName, setMiddleName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [passport, setPassport] = useState("");
     const [isEditing, setIsEditing] = useState(false);
-    const [isPromoted, setIsPromoted] = useState(false);
-    const [isNotified, setIsNotified] = useState(false);
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
 
     useEffect(()  => {
         if (currentUserId) {
-            setAddress(currentUser.address || "")
-            setEmail(currentUser.email || "")
-            setTaxNumber(currentUser.tax_number || "")
-            setRegNumber(currentUser.reg_number || "")
-            setCompanyName(currentUser.company_name || "")
             setFirstName(currentUser.first_name)
-            setLastName(currentUser.last_name)
+            setSecondName(currentUser.second_name)
             setMiddleName(currentUser.middle_name || "")
-            setPhoneNumber(currentUser.phone)
-            setIsPromoted(currentUser.is_promoted)
-            setIsNotified(currentUser.is_notified)
+            setPassport(currentUser.passport)
+            setLogin(currentUser.login_)
+            setPassword(currentUser.password_)
         }
     }, [currentUserId])
 
@@ -59,17 +47,13 @@ const AccountClient = () => {
 
         const obj = {
             first_name: firstName || null,
-            last_name: lastName || null,
+            second_name: secondName || null,
             middle_name: middleName || null,
-            // phone: replaceMaskWithNumber(phoneNumber) || null,
-            email: email || null,
-            address: address || null,
-            tax_number: taxNumber || null,
-            reg_number: regNumber || null,
-            company_name: companyName || null
+            login_: login || null,
+            password_: password || null
         }
 
-        dispatch(userActions.updateUser(obj, currentUser.id, () => {
+        dispatch(userActions.updateUser(obj, currentUser.user_id, () => {
             dispatch(userActions.getCurrentUser())
             DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
         }));
@@ -87,26 +71,6 @@ const AccountClient = () => {
         }))
     }
 
-    const updateIsPromoted = (val) => {
-        setIsPromoted(val)
-        const obj = {
-            is_promoted: val,
-        }
-        dispatch(userActions.updateUser(obj, currentUser.id, () => {
-            DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
-        }));
-    }
-
-    const updateIsNotified = (val) => {
-        setIsNotified(val)
-        const obj = {
-            is_notified: val,
-        }
-        dispatch(userActions.updateUser(obj, currentUser.id, () => {
-            DomNotification.success({title: "Профиль успешно обновлён", showClose: true, duration: 5000});
-        }));
-    }
-
     return (
         currentUserId &&
             <div className={st.container}>
@@ -114,47 +78,19 @@ const AccountClient = () => {
                     <DlBreadcrumb
                         currentIndex={2}
                         items={[
-                            { index: 1, title: "Заявки", path: '/' },
+                            { index: 1, title: "Билеты", path: '/' },
                             { index: 2, title: "Личный кабинет" }
                         ]}
                     />
                     <h1 className={st.title}>Личный кабинет</h1>
-                    {currentUser.role === ROLE.company &&
-                        <div>
-                            <DlFormItem className={st.formItem} label="ИНН">
-                                <DlInput
-                                    disabled={!isEditing}
-                                    value={taxNumber}
-                                    placeholder="3664069397"
-                                    onChange={ev => setTaxNumber(ev.target.value)}
-                                />
-                            </DlFormItem>
-                            <DlFormItem className={st.formItem} label="ОГРН">
-                                <DlInput
-                                    disabled={!isEditing}
-                                    placeholder="1053600591197"
-                                    value={regNumber}
-                                    onChange={ev => setRegNumber(ev.target.value)}
-                                />
-                            </DlFormItem>
-                            <DlFormItem className={st.formItem} label="Наименование юридического лица">
-                                <DlInput
-                                    disabled={!isEditing}
-                                    placeholder='ООО "Пример"'
-                                    value={companyName}
-                                    onChange={ev => setCompanyName(ev.target.value)}
-                                />
-                            </DlFormItem>
-                        </div>
-                    }
                     <div>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Полное наименование заявителя">
+                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Полное наименование">
                             <div className={st.formInput}>
                                 <DlInput
-                                    value={lastName}
+                                    value={secondName}
                                     disabled={!isEditing}
                                     placeholder="Фамилия"
-                                    onChange={ev => setLastName(ev.target.value)}
+                                    onChange={ev => setSecondName(ev.target.value)}
                                     wrapperClass={st.input}
                                 />
                             </div>
@@ -177,36 +113,37 @@ const AccountClient = () => {
                                 />
                             </div>
                         </DlFormItem>
-                        <div className={st.forms_inline}>
-                            <DlFormItem className={st.forms_inline_item} label="Номер телефона">
-                                <InputMask
-                                    mask="+7 (999) 999-99-99"
-                                    maskPlaceholder="0"
-                                    alwaysShowMask
-                                    value={phoneNumber}
-                                    disabled
-                                >
-                                    {(inputProps) => <DlInput placeholder="+7 (000) 000-00-00" disabled />}
-                                </InputMask>
-                            </DlFormItem>
-                            <DlFormItem className={st.forms_inline_item} label="Адрес почты">
+                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Пасспорт">
+                            <div className={st.formInput}>
                                 <DlInput
-                                    placeholder="example@example.com"
-                                    disabled={!isEditing}
-                                    value={email}
-                                    onChange={ev => setEmail(ev.target.value)}
+                                    value={passport}
+                                    disabled
+                                    placeholder="Пасспорт"
+                                    onChange={ev => setPassport(ev.target.value)}
+                                    wrapperClass={st.input}
                                 />
-                            </DlFormItem>
-                        </div>
-                        <div className={st.notifications}>
-                            <p className={st.bigger_subtitle}>Уведомления</p>
-                            <div className={st.checkbox_div}>
-                                <DlCheckbox value={isPromoted} onChange={val => updateIsPromoted(val)} label="Акции и предложения" />
                             </div>
-                            <div className={st.checkbox_div}>
-                                <DlCheckbox value={isNotified} onChange={val => updateIsNotified(val)} label="Информация о заявках и обновлении статусов" />
+                        </DlFormItem>
+                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Логин и пароль">
+                            <div className={st.formInput}>
+                                <DlInput
+                                    value={login}
+                                    disabled={!isEditing}
+                                    placeholder="Логин"
+                                    onChange={ev => setLogin(ev.target.value)}
+                                    wrapperClass={st.input}
+                                />
                             </div>
-                        </div>
+                            <div className={st.formInput}>
+                                <DlInput
+                                    placeholder="Пароль"
+                                    disabled={!isEditing}
+                                    value={password}
+                                    onChange={ev => setPassword(ev.target.value)}
+                                    wrapperClass={st.input}
+                                />
+                            </div>
+                        </DlFormItem>
                     </div>
 
                     <div className={st.footer_buttons}>
