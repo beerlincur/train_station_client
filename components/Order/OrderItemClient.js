@@ -1,17 +1,12 @@
-import st from "./TicketItem.module.css"
 import React, {useRef, useState} from "react";
 import cx from "classnames";
 import { useRouter } from "next/router";
-import DlTag from "../Shared/Tag";
-import TicketInfo from "./TicketInfo";
 import {convertDate} from "../../utils/utils";
 import ApplicationsDocument from "../Shared/Document/Document";
 import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
-import DlButton from "../Shared/Button";
-import orderActions from "../../actions/order";
-import DomNotification from "../Shared/DomNotification";
-import {useDispatch} from "react-redux";
+import st from "./OrderItemClient.module.css"
+import TicketInfo from "../Ticket/TicketInfo";
 
 
 const roadHeaders = [
@@ -22,9 +17,8 @@ const roadHeaders = [
     { name: "arrTime", label: "Прибытие" },
 ];
 
-const TicketItemClient = props => {
+const OrderItemClient = props => {
     const { push } = useRouter()
-    const dispatch = useDispatch()
 
     const onFooterClick = ev => {
         ev.stopPropagation()
@@ -34,17 +28,17 @@ const TicketItemClient = props => {
 
     const [isRoadCollapsed, setIsRoadCollapsed] = useState(true)
 
-    const tag = props.is_bought ? {
+    const tag = props.is_canceled ? {
         color: 'error',
-        label: "Куплен",
+        label: "Отменен",
         dark: false,
     } : {
         color: 'success',
-        label: "Доступен",
+        label: "Активен",
         dark: false,
     }
 
-    const protocolTableData = props.stations.map((station, i) => {
+    const protocolTableData = props.ticket.stations.map((station, i) => {
         return {
             index: i + 1,
             number: station.station_id,
@@ -54,13 +48,6 @@ const TicketItemClient = props => {
         }
     })
 
-    const onBuyClicked = ev => {
-        ev.stopPropagation()
-        dispatch(orderActions.createOrder(props.ticket_id))
-        push('/passport/account/')
-        DomNotification.success({ title: "Заказ успешно создан", showClose: true, duration: 5000 });
-    }
-
     return (
         <div
             className={cx(st.application, st.isDone)}
@@ -69,24 +56,19 @@ const TicketItemClient = props => {
                 <div className={st.info}>
                     <TicketInfo
                         tag={tag}
-                        dateTitle={`Билет №${props.ticket_id}`}
-                        numberTitle={`${props.road.name}`}
+                        dateTitle={`Заказ №${props.order_id} от ${convertDate(props.created_at, { format: "dd.LL.yyyy в HH:mm" })}`}
+                        numberTitle={`${props.ticket.road.name}`}
                     />
                 </div>
                 <div className={cx(st.status, st.statusDone)}>
                     <div className={st.document}>
-                        <ApplicationsDocument title={`${props.departure_station.station.name}`} timeText={`${convertDate(props.departure_station.departure_time, { format: "dd.LL.yyyy в HH:mm" })}`} />
+                        <ApplicationsDocument title={`${props.ticket.departure_station.station.name}`} timeText={`${convertDate(props.ticket.departure_station.departure_time, { format: "dd.LL.yyyy в HH:mm" })}`} />
                     </div>
                     <div className={st.arrow}>-></div>
                     <div className={st.document}>
-                        <ApplicationsDocument title={`${props.arrival_station.station.name}`} timeText={`${convertDate(props.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
+                        <ApplicationsDocument title={`${props.ticket.arrival_station.station.name}`} timeText={`${convertDate(props.ticket.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
                     </div>
                 </div>
-                {!props.is_bought &&
-                <div className={st.buy_button}>
-                    <DlButton size="sm" type="primary" onClick={onBuyClicked}>Купить</DlButton>
-                </div>
-                }
             </div>
             <div className={st.footer} onClick={onFooterClick}>
                 <div className={cx(st.footerContent, { [st.isCollapsed]: isRoadCollapsed })} ref={footerContentRef}>
@@ -113,4 +95,4 @@ const TicketItemClient = props => {
     )
 }
 
-export default TicketItemClient
+export default OrderItemClient

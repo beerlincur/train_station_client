@@ -41,6 +41,26 @@
     flex: 0 0 100%;
     margin-bottom: 1rem;
 }
+.no_applications_label {
+    text-align: center;
+    margin-top: 117px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #969696;
+}
+.applicationsItem {
+    margin-bottom: 24px;
+}
+.applicationsList {
+    margin-top: 40px;
+    padding-bottom: 100px;
+}
+
+.applicationsItem:last-of-type {
+    margin-bottom: 0;
+}
 .forms_inline_item:last-of-type {
     margin-bottom: 0;
 }

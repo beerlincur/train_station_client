@@ -14,8 +14,6 @@ const IndexPage = () => {
 
   const { racesList, loader } = useSelector(state => state.race)
 
-  console.log(`loader index: ${loader}`)
-
   useEffect(() => {
     dispatch(raceActions.getAllRaces());
   }, [])

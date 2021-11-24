@@ -3,11 +3,13 @@ import { combineReducers } from "redux"
 import { CLEAR_STORE } from '../actions/user';
 import ticket from './ticket'
 import race from "./race";
+import order from "./order";
 
 const appReducers = combineReducers({
     user,
     ticket,
-    race
+    race,
+    order
 })
 
 const rootReducer = (state, action) => {

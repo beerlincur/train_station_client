@@ -6,6 +6,7 @@ import ticketActions from "../../../actions/ticket";
 import DlHeadTitle from "../../../components/Shared/HeadTitle";
 import TicketItemClient from "../../../components/Ticket/TicketItemClient";
 import DefaultLayout from "../../../layouts/DefaultLayout";
+import DlBreadcrumb from "../../../components/Shared/Breadcrumb";
 
 
 const TicketsByRacePage = () => {
@@ -13,7 +14,6 @@ const TicketsByRacePage = () => {
     const dispatch = useDispatch();
 
     const { ticketsList, loader } = useSelector(state => state.ticket)
-    console.log(`loader tickets?race_id: ${loader}`)
 
     useEffect(() => {
         if (query.race_id) {
@@ -25,7 +25,16 @@ const TicketsByRacePage = () => {
         <>
             <DlHeadTitle title={`Билеты на рейс #${query.race_id}`} />
             <div className={st.title_container}>
-                <h1 className={st.title}>Билеты на рейс #{query.race_id}</h1>
+                <div className={st.main}>
+                    <DlBreadcrumb
+                        currentIndex={2}
+                        items={[
+                            { index: 1, title: "Рейсы", path: '/' },
+                            { index: 2, title: `Билеты на рейс #${query.race_id}` }
+                        ]}
+                    />
+                    <h1 className={st.title}>Билеты на рейс #{query.race_id}</h1>
+                </div>
             </div>
             <div className={st.applicationsList}>
                 {loader ?

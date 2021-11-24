@@ -69,7 +69,7 @@ const DefaultLayoutHeader = () => {
                     )
                 }
                 <div className={st.link}>
-                    <LayoutNavLink title="Настройки" icon="settings" href="/passport/account" />
+                    <LayoutNavLink title="Личный кабинет" icon="settings" href="/passport/account" />
                 </div>
             </div>
             {menuOpened && <div className={st.linksMask} onClick={() => setMenuOpened(false)} />}

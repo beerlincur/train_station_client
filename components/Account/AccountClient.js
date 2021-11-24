@@ -10,6 +10,9 @@ import {TOKEN_NAME} from "../../utils/constants";
 import userActions from "../../actions/user";
 import DomNotification from "../Shared/DomNotification";
 import DlBreadcrumb from "../Shared/Breadcrumb";
+import orderActions from "../../actions/order";
+import RaceItemClient from "../Ticket/RaceItemClient";
+import OrderItemClient from "../Order/OrderItemClient";
 
 const AccountClient = () => {
     const { push } = useRouter();
@@ -17,6 +20,7 @@ const AccountClient = () => {
     const { currentUser } = useSelector(state => state.user);
     const  currentUserId = currentUser && currentUser.user_id;
 
+    const { ordersList, loader } = useSelector(state => state.order)
 
     const [firstName, setFirstName] = useState("");
     const [secondName, setSecondName] = useState("");
@@ -37,6 +41,11 @@ const AccountClient = () => {
         }
     }, [currentUserId])
 
+    useEffect(() => {
+        if (currentUserId) {
+            dispatch(orderActions.getUserOrders())
+        }
+    }, [currentUserId])
 
     const onEditButtonClick = () => {
         setIsEditing(true);
@@ -78,13 +87,13 @@ const AccountClient = () => {
                     <DlBreadcrumb
                         currentIndex={2}
                         items={[
-                            { index: 1, title: "Билеты", path: '/' },
+                            { index: 1, title: "Рейсы", path: '/' },
                             { index: 2, title: "Личный кабинет" }
                         ]}
                     />
                     <h1 className={st.title}>Личный кабинет</h1>
                     <div>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Полное наименование">
+                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Полное имя">
                             <div className={st.formInput}>
                                 <DlInput
                                     value={secondName}
@@ -113,18 +122,7 @@ const AccountClient = () => {
                                 />
                             </div>
                         </DlFormItem>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Пасспорт">
-                            <div className={st.formInput}>
-                                <DlInput
-                                    value={passport}
-                                    disabled
-                                    placeholder="Пасспорт"
-                                    onChange={ev => setPassport(ev.target.value)}
-                                    wrapperClass={st.input}
-                                />
-                            </div>
-                        </DlFormItem>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Логин и пароль">
+                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Логин, пароль и пасспорт">
                             <div className={st.formInput}>
                                 <DlInput
                                     value={login}
@@ -140,6 +138,15 @@ const AccountClient = () => {
                                     disabled={!isEditing}
                                     value={password}
                                     onChange={ev => setPassword(ev.target.value)}
+                                    wrapperClass={st.input}
+                                />
+                            </div>
+                            <div className={st.formInput}>
+                                <DlInput
+                                    value={passport}
+                                    disabled
+                                    placeholder="Пасспорт"
+                                    onChange={ev => setPassport(ev.target.value)}
                                     wrapperClass={st.input}
                                 />
                             </div>
@@ -170,6 +177,24 @@ const AccountClient = () => {
                             <DlButton type="error" fullWidth onClick={onLogoutClicked}>Выйти из аккаунта</DlButton>
                         </div>
                     </div>
+                </div>
+                <h1 className={st.title}>Мои заказы</h1>
+                <div className={st.applicationsList}>
+                    {loader ?
+                        <div className={st.no_applications_label}>Загрузка...</div>
+                        :
+                        (ordersList.length === 0 ?
+                                <div className={st.no_applications_label}>Заказов пока нет</div>
+                                :
+                                ordersList.map((item, i) => {
+                                    return (
+                                        <div key={i} className={st.applicationsItem}>
+                                            <OrderItemClient {...item}/>
+                                        </div>
+                                    )
+                                })
+                        )
+                    }
                 </div>
             </div>
     )
