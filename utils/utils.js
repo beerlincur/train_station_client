@@ -77,8 +77,8 @@ export const getUserInitials = user => {
     let initials = ""
     if (user.first_name)
         initials += user.first_name[0]
-    if (user.last_name)
-        initials += user.last_name[0]
+    if (user.second_name)
+        initials += user.second_name[0]
     return initials;
 }
 
