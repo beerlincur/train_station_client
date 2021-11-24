@@ -87,7 +87,7 @@ const RoadItemClient = props => {
     return (
         <div
             className={cx(st.application, st.isDone)}
-            onClick={() => push(`/race/${props.race_number}`)}
+            onClick={() => push(`/tickets/${props.race_number}`)}
         >
             <div className={cx(st.content, st.isDone)}>
                 <div className={st.info}>

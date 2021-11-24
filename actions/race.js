@@ -2,8 +2,8 @@ import DomNotification from "../components/Shared/DomNotification";
 import {getTokenConfig} from "../utils/utils";
 import axios from "axios";
 
-export const RACE_LIST_LOADING = "TICKET_LIST_LOADING";
-export const GET_RACE_LIST_SUCCESS = "GET_TICKET_LIST_SUCCESS";
+export const RACE_LIST_LOADING = "RACE_LIST_LOADING";
+export const GET_RACE_LIST_SUCCESS = "GET_RACE_LIST_SUCCESS";
 
 const raceActions = {
     getAllRaces: (callback, onError) => {

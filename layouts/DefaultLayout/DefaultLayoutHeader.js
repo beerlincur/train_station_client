@@ -36,26 +36,34 @@ const DefaultLayoutHeader = () => {
             <div className={cx(st.links, { [st.active]: menuOpened })}>
                 {currentUser.role_id === ROLE.admin ? (
                     <>
-                    <div className={st.link}>
-                        <LayoutNavLink title="Проводники" icon="laborants" href="/conductors" />
-                    </div>
-                    <div className={st.link}>
-                        <LayoutNavLink title="Поезда" icon="request" href="/trains" />
-                    </div>
-                    <div className={st.link}>
-                        <LayoutNavLink title="Станции" icon="request" href="/stations" />
-                    </div>
+                        <div className={st.link}>
+                            <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
+                        </div>
+                        <div className={st.link}>
+                            <LayoutNavLink title="Проводники" icon="laborants" href="/conductors" />
+                        </div>
+                        <div className={st.link}>
+                            <LayoutNavLink title="Поезда" icon="request" href="/trains" />
+                        </div>
+                        <div className={st.link}>
+                            <LayoutNavLink title="Станции" icon="request" href="/stations" />
+                        </div>
                     </>
                     )
                     :
                     (currentUser.role_id === ROLE.conductor ?
-                        <div className={st.link}>
-                            <LayoutNavLink title="Мои маршруты" icon="laborants" href="/conductor" />
-                        </div>
+                        <>
+                            <div className={st.link}>
+                                <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
+                            </div>
+                            <div className={st.link}>
+                                <LayoutNavLink title="Мои маршруты" icon="laborants" href="/conductor" />
+                            </div>
+                        </>
                         :
                         <>
                             <div className={st.link}>
-                                <LayoutNavLink title="Билеты" icon="request" href="/" activeLinks={["/"]} />
+                                <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
                             </div>
                         </>
                     )
