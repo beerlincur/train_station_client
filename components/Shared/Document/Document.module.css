@@ -10,8 +10,8 @@
 } */
 .title {
     margin-bottom: 2px;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 22px;
+    line-height: 30px;
 }
 .link {
     color: #0085FF;
@@ -28,7 +28,7 @@
 .link_loading {
     color: #0085FF;
     transition: all .3s ease-in-out;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 14px;
 }
 
@@ -37,7 +37,7 @@
         margin-right: 13px;
     }
     .title {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 18px;
+        line-height: 30px;
     }
 }

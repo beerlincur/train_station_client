@@ -2,10 +2,6 @@
     background-color: #F7F9FA;
     border-radius: 16px;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
     color: #000000;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
     cursor: pointer;
@@ -13,19 +9,72 @@
 .application:hover {
     box-shadow: 0 2px 8px rgba(38, 39, 54, 0.16);
 }
+.noHover {
+    cursor: initial;
+}
+.noHover:hover {
+    box-shadow: initial;
+}
 .isDone, .isCourier {
     flex-wrap: wrap;
 }
 .info {
     flex-grow: 1;
     flex-shrink: 1;
-    margin-right: auto;
+    /*margin-right: auto;*/
+}
+.content {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    flex-wrap: wrap;
+}
+.footer {
+    padding: 0 16px 14px;
+    cursor: initial;
+}
+.footerTitle {
+    cursor: pointer;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.footerTitle:hover .footerIcon {
+    background-color: #e8e8e8;
+}
+.footerIcon {
+    margin-right: 5px;
+    color: #585757;
+    width: 28px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    transform: rotatex(180deg);
+    transition: all .3s ease-in-out;
+}
+.iconCollapsed {
+    transform: rotatex(0deg);
+}
+.footerContent {
+    transition: max-height 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.isCollapsed {
+    max-height: 0px;
+}
+.table {
+    margin-top: 1.5rem;
 }
 .status {
     width: 100%;
-    margin-left: auto;
     min-width: 300px;
-    max-width: 350px;
+    max-width: 650px;
     display: none;
 }
 .statusDone {
@@ -34,7 +83,6 @@
     margin-top: 16px;
     justify-content: space-between;
     font-size: 14px;
-    margin-left: -4px;
     margin-right: -4px;
 }
 .document {
@@ -120,7 +168,7 @@
     }
     .info {
         white-space: nowrap;
-        min-width: 350px;
+        min-width: 300px;
     }
     .courierInfo {
         flex-wrap: nowrap;
@@ -133,9 +181,6 @@
     }
 }
 
-.info {
-    width: 100%;
-}
 .number {
     font-weight: 700;
     font-size: 22px;
@@ -147,6 +192,10 @@
     font-size: 14px;
 }
 
+.arrow {
+    white-space: nowrap;
+    font-size: 35px;
+}
 @media screen and (min-width: 900px) {
     .isCourier {
         flex-wrap: nowrap;
