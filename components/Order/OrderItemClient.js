@@ -7,6 +7,9 @@ import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
 import st from "./OrderItemClient.module.css"
 import TicketInfo from "../Ticket/TicketInfo";
+import DlButton from "../Shared/Button";
+import orderActions from "../../actions/order";
+import {useDispatch} from "react-redux";
 
 
 const roadHeaders = [
@@ -19,6 +22,7 @@ const roadHeaders = [
 
 const OrderItemClient = props => {
     const { push } = useRouter()
+    const dispatch = useDispatch()
 
     const onFooterClick = ev => {
         ev.stopPropagation()
@@ -48,6 +52,13 @@ const OrderItemClient = props => {
         }
     })
 
+    const onCancelOrderClicked = () => {
+        dispatch(orderActions.cancelOrder(props.order_id))
+    }
+
+    console.log(new Date())
+    console.log(props.ticket.departure_station.departure_time)
+
     return (
         <div
             className={cx(st.application, st.isDone)}
@@ -69,6 +80,11 @@ const OrderItemClient = props => {
                         <ApplicationsDocument title={`${props.ticket.arrival_station.station.name}`} timeText={`${convertDate(props.ticket.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
                     </div>
                 </div>
+                {(new Date()) < props.ticket.departure_station.departure_time &&
+                    <div className={st.buy_button}>
+                        <DlButton size="sm" type="error" onClick={onCancelOrderClicked}>Отменить</DlButton>
+                    </div>
+                }
             </div>
             <div className={st.footer} onClick={onFooterClick}>
                 <div className={cx(st.footerContent, { [st.isCollapsed]: isRoadCollapsed })} ref={footerContentRef}>
