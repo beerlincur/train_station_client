@@ -4,12 +4,14 @@ import { CLEAR_STORE } from '../actions/user';
 import ticket from './ticket'
 import race from "./race";
 import order from "./order";
+import road from "./road";
 
 const appReducers = combineReducers({
     user,
     ticket,
     race,
-    order
+    order,
+    road
 })
 
 const rootReducer = (state, action) => {

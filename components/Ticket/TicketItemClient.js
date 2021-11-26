@@ -69,7 +69,7 @@ const TicketItemClient = props => {
                 <div className={st.info}>
                     <TicketInfo
                         tag={tag}
-                        dateTitle={`Билет №${props.ticket_id}`}
+                        dateTitle={`Билет №${props.ticket_id} Вагон ${props.car_number} Место ${props.seat_number}`}
                         numberTitle={`${props.road.name}`}
                     />
                 </div>

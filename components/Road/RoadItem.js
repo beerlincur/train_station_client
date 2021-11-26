@@ -1,3 +1,4 @@
+import st from "./RoadItem.module.css"
 import React, {useRef, useState} from "react";
 import cx from "classnames";
 import { useRouter } from "next/router";
@@ -5,7 +6,7 @@ import {convertDate} from "../../utils/utils";
 import ApplicationsDocument from "../Shared/Document/Document";
 import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
-import st from "./OrderItemClient.module.css"
+import {useDispatch} from "react-redux";
 import TicketInfo from "../Ticket/TicketInfo";
 
 
@@ -13,12 +14,11 @@ const roadHeaders = [
     { name: "index", label: "№", width: "50px" },
     { name: "number", label: "Номер станции", width: "50px" },
     { name: "name", label: "Название", width: "130px"},
-    { name: "depTime", label: "Отбытие" },
-    { name: "arrTime", label: "Прибытие" },
 ];
 
-const OrderItemClient = props => {
+const RoadItem = props => {
     const { push } = useRouter()
+    const dispatch = useDispatch()
 
     const onFooterClick = ev => {
         ev.stopPropagation()
@@ -28,23 +28,17 @@ const OrderItemClient = props => {
 
     const [isRoadCollapsed, setIsRoadCollapsed] = useState(true)
 
-    const tag = props.is_canceled ? {
-        color: 'error',
-        label: "Отменен",
-        dark: false,
-    } : {
+    const tag = {
         color: 'success',
-        label: "Активен",
+        label: "Доступно",
         dark: false,
     }
 
-    const protocolTableData = props.ticket.stations.map((station, i) => {
+    const protocolTableData = props.stations.map((station, i) => {
         return {
             index: i + 1,
             number: station.station_id,
             name: station.name,
-            arrTime: convertDate(station.arrival_time, { format: "dd.LL.yyyy в HH:mm" }),
-            depTime: convertDate(station.departure_time, { format: "dd.LL.yyyy в HH:mm" }),
         }
     })
 
@@ -56,17 +50,17 @@ const OrderItemClient = props => {
                 <div className={st.info}>
                     <TicketInfo
                         tag={tag}
-                        dateTitle={`Заказ №${props.order_id} от ${convertDate(props.created_at, { format: "dd.LL.yyyy в HH:mm" })} Вагон ${props.ticket.car_number} Место ${props.ticket.seat_number}`}
-                        numberTitle={`${props.ticket.road.name}`}
+                        dateTitle={``}
+                        numberTitle={`${props.name}`}
                     />
                 </div>
                 <div className={cx(st.status, st.statusDone)}>
                     <div className={st.document}>
-                        <ApplicationsDocument title={`${props.ticket.departure_station.station.name}`} timeText={`${convertDate(props.ticket.departure_station.departure_time, { format: "dd.LL.yyyy в HH:mm" })}`} />
+                        <ApplicationsDocument title={`${props.stations[0].name}`} />
                     </div>
                     <div className={st.arrow}>-></div>
                     <div className={st.document}>
-                        <ApplicationsDocument title={`${props.ticket.arrival_station.station.name}`} timeText={`${convertDate(props.ticket.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
+                        <ApplicationsDocument title={`${props.stations[props.stations.length - 1].name}`}/>
                     </div>
                 </div>
             </div>
@@ -95,4 +89,4 @@ const OrderItemClient = props => {
     )
 }
 
-export default OrderItemClient
+export default RoadItem
