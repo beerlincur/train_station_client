@@ -45,6 +45,7 @@ const RoadItem = props => {
     return (
         <div
             className={cx(st.application, st.isDone)}
+            onClick={() => push(`/races/${props.road_id}`)}
         >
             <div className={cx(st.content, st.isDone)}>
                 <div className={st.info}>

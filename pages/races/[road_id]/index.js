@@ -1,0 +1,70 @@
+import { useRouter } from "next/router";
+import st from "./index.module.css";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import raceActions from "../../../actions/race";
+import RaceItemClient from "../../../components/Ticket/RaceItemClient";
+import DefaultLayout from "../../../layouts/DefaultLayout";
+import DlHeadTitle from "../../../components/Shared/HeadTitle";
+import DlBreadcrumb from "../../../components/Shared/Breadcrumb";
+
+
+const RacesByRoadPage = () => {
+    const { push, query } = useRouter();
+    const dispatch = useDispatch();
+
+    const { racesList, loader } = useSelector(state => state.race)
+
+    const [roadName, setRoadName] = useState('Рейсы направления')
+
+    useEffect(() => {
+        if (query.road_id) {
+            dispatch(raceActions.getRacesByRoad(query.road_id));
+        }
+    }, [query.road_id])
+
+    useEffect(() => {
+        if (racesList.length > 0) {
+            setRoadName(`Рейсы ${racesList[0].road.name}`)
+        }
+    }, [racesList.length])
+
+    return (
+        <>
+            <DlHeadTitle title={roadName} />
+            <div className={st.title_container}>
+                <div className={st.main}>
+                    <DlBreadcrumb
+                        currentIndex={2}
+                        items={[
+                            { index: 1, title: "Направления", path: '/roads' },
+                            { index: 2, title: roadName }
+                        ]}
+                    />
+                    <h1 className={st.title}>{roadName}</h1>
+                </div>
+            </div>
+            <div className={st.applicationsList}>
+                {loader ?
+                    <div className={st.no_applications_label}>Загрузка...</div>
+                    :
+                    (racesList.length === 0 ?
+                            <div className={st.no_applications_label}>Рейсов пока нет</div>
+                            :
+                            racesList.map((item, i) => {
+                                return (
+                                    <div key={i} className={st.applicationsItem}>
+                                        <RaceItemClient {...item}/>
+                                    </div>
+                                )
+                            })
+                    )
+                }
+            </div>
+        </>
+    )
+}
+
+RacesByRoadPage.getLayout = page => <DefaultLayout>{page}</DefaultLayout>
+
+export default RacesByRoadPage;

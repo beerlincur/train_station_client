@@ -37,7 +37,7 @@ const DefaultLayoutHeader = () => {
                 {currentUser.role_id === ROLE.admin ? (
                     <>
                         <div className={st.link}>
-                            <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
+                            <LayoutNavLink title="Все рейсы" icon="request" href="/" activeLinks={["/"]} />
                         </div>
                         <div className={st.link}>
                             <LayoutNavLink title="Проводники" icon="laborants" href="/conductors" />
@@ -54,7 +54,7 @@ const DefaultLayoutHeader = () => {
                     (currentUser.role_id === ROLE.conductor ?
                         <>
                             <div className={st.link}>
-                                <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
+                                <LayoutNavLink title="Все рейсы" icon="request" href="/" activeLinks={["/"]} />
                             </div>
                             <div className={st.link}>
                                 <LayoutNavLink title="Мои маршруты" icon="laborants" href="/conductor" />
@@ -63,7 +63,7 @@ const DefaultLayoutHeader = () => {
                         :
                         <>
                             <div className={st.link}>
-                                <LayoutNavLink title="Рейсы" icon="request" href="/" activeLinks={["/"]} />
+                                <LayoutNavLink title="Все рейсы" icon="request" href="/" activeLinks={["/"]} />
                             </div>
                             <div className={st.link}>
                                 <LayoutNavLink title="Направления" icon="request" href="/roads" />
