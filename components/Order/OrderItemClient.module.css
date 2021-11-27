@@ -125,11 +125,34 @@
 .tableContainer {
     margin-top: 3rem;
 }
+.order_details {
+    margin-top: 3rem;
+}
 .bigger_subtitle {
     font-weight: normal;
     font-size: 24px;
     line-height: 32px;
     color: #1C1C1C;
+}
+.formItem {
+    flex-grow: 1;
+    /* margin-right: 16px; */
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-bottom: 16px;
+}
+.formItem:last-of-type {
+    margin-right: 0;
+}
+.formItemInner {
+    flex-wrap: wrap;
+}
+.formInput {
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+}
+.formInput:last-of-type {
+    margin-bottom: 0;
 }
 .table {
     margin-top: 1.5rem;
@@ -150,6 +173,16 @@
 }
 .buy_button {
     margin-left: 30px;
+}
+.item {
+    margin-top: 1rem;
+}
+.flex {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
 }
 @media screen and (min-width: 375px) {
     .addButton {
@@ -206,5 +239,22 @@
     .courierInfo {
         flex-wrap: nowrap;
         margin-top: 0;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .title {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .formItemInner {
+        flex-wrap: nowrap;
+    }
+
+    .formInput {
+        flex: 0 1 auto;
+        margin-right: 1rem;
+        margin-bottom: 0;
     }
 }

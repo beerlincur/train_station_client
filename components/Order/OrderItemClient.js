@@ -10,6 +10,8 @@ import TicketInfo from "../Ticket/TicketInfo";
 import DlButton from "../Shared/Button";
 import orderActions from "../../actions/order";
 import {useDispatch} from "react-redux";
+import DlInput from "../Shared/Input";
+import DlFormItem from "../Shared/FormItem/FormItem";
 
 
 const roadHeaders = [
@@ -34,7 +36,7 @@ const OrderItemClient = props => {
 
     const tag = props.is_canceled ? {
         color: 'error',
-        label: "Отменен",
+        label: "Отменён",
         dark: false,
     } : {
         color: 'success',
@@ -56,9 +58,6 @@ const OrderItemClient = props => {
         dispatch(orderActions.cancelOrder(props.order_id))
     }
 
-    console.log(new Date())
-    console.log(props.ticket.departure_station.departure_time)
-
     return (
         <div
             className={cx(st.application, st.isDone)}
@@ -67,7 +66,7 @@ const OrderItemClient = props => {
                 <div className={st.info}>
                     <TicketInfo
                         tag={tag}
-                        dateTitle={`Заказ №${props.order_id} от ${convertDate(props.created_at, { format: "dd.LL.yyyy в HH:mm" })} Вагон ${props.ticket.car_number} Место ${props.ticket.seat_number}`}
+                        dateTitle={`№${props.order_id} от ${convertDate(props.created_at, { format: "dd.LL.yyyy в HH:mm" })}`}
                         numberTitle={`${props.ticket.road.name}`}
                     />
                 </div>
@@ -80,7 +79,7 @@ const OrderItemClient = props => {
                         <ApplicationsDocument title={`${props.ticket.arrival_station.station.name}`} timeText={`${convertDate(props.ticket.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
                     </div>
                 </div>
-                {(new Date()) < props.ticket.departure_station.departure_time &&
+                {(new Date()) < new Date(props.ticket.departure_station.departure_time) && !props.is_canceled &&
                     <div className={st.buy_button}>
                         <DlButton size="sm" type="error" onClick={onCancelOrderClicked}>Отменить</DlButton>
                     </div>
@@ -89,6 +88,65 @@ const OrderItemClient = props => {
             <div className={st.footer} onClick={onFooterClick}>
                 <div className={cx(st.footerContent, { [st.isCollapsed]: isRoadCollapsed })} ref={footerContentRef}>
                     <div className={st.collapseSamples}>
+                        <div className={st.order_details}>
+                            <div className={st.bigger_subtitle}>Детали</div>
+                            <div className={cx(st.item, st.flex)}>
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Номер билета">
+                                        <DlInput value={props.ticket.ticket_id}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Номер рейса">
+                                        <DlInput value={props.ticket.race_number}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Дата оформления">
+                                        <DlInput value={convertDate(props.created_at, { format: "dd.LL.yyyy в HH:mm" })}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+                            </div>
+                            <div className={cx(st.item, st.flex)}>
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Номер поезда">
+                                        <DlInput value={props.ticket.departure_station.train.train_id}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Номер вагона">
+                                        <DlInput value={props.ticket.car_number}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+
+                                <div>
+                                    <DlFormItem className={st.formItem} label="Место">
+                                        <DlInput value={props.ticket.seat_number}
+                                                 disabled
+                                                 wrapperClass={st.input}
+                                        />
+                                    </DlFormItem>
+                                </div>
+                            </div>
+                        </div>
                         <div className={st.tableContainer}>
                             <div className={st.bigger_subtitle}>Проезжаемые станции</div>
                             <div className={st.table}>
