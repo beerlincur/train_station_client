@@ -59,6 +59,12 @@ export const ROLE = {
     admin: 3
 }
 
+export const ROLE_RUSSIAN = {
+    1: "Клиент",
+    2: "Кондуктор",
+    3: "Админ"
+}
+
 export const getDisplyedPhoneNumber = phone => {
     if (!phone) return ""
     let cPhone = phone;

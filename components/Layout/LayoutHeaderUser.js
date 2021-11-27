@@ -1,16 +1,7 @@
 import st from './LayoutHeaderUser.module.css'
 import Link from "next/link"
 import { useSelector } from "react-redux";
-import { getDisplyedPhoneNumber, getUserInitials } from '../../utils/utils';
-
-const userRoles = {
-    'admin': 'Администратор',
-    'courier': 'Курьер',
-    'individual': 'Заказчик',
-    'company': 'Юр. лицо',
-    'laboratory': 'Лаборатория',
-    'assistant': 'Сотрудник лаборатории',
-}
+import {getUserInitials, ROLE_RUSSIAN} from '../../utils/utils';
 
 const LayoutHeaderUser = () => {
     const { currentUser } = useSelector(state => state.user)
@@ -20,8 +11,7 @@ const LayoutHeaderUser = () => {
                 <div className={st.avatar}>{getUserInitials(currentUser)}</div>
                 <div className={st.info}>
                     <div className={st.name}>{currentUser.first_name + " " + currentUser.second_name}</div>
-                    <div className={st.phone}>{currentUser.passport}</div>
-                    <div className={st.role}>{userRoles[currentUser.role]}</div>
+                    <div className={st.phone}>{ROLE_RUSSIAN[currentUser.role_id]}</div>
                 </div>
             </a>
         </Link>

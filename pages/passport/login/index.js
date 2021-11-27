@@ -69,6 +69,7 @@ const Login = () => {
                     value={password}
                     onChange={ev => setPassword(ev.target.value)}
                     onKeyPress={handleKeyPress}
+                    type={"password"}
                 />
             </div>
         </LoginInnerLayout>

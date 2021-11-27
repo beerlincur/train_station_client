@@ -13,6 +13,8 @@ import DlBreadcrumb from "../Shared/Breadcrumb";
 import orderActions from "../../actions/order";
 import RaceItemClient from "../Ticket/RaceItemClient";
 import OrderItemClient from "../Order/OrderItemClient";
+import cx from "classnames";
+import {convertDate} from "../../utils/utils";
 
 const AccountClient = () => {
     const { push } = useRouter();
@@ -87,70 +89,49 @@ const AccountClient = () => {
                     <DlBreadcrumb
                         currentIndex={2}
                         items={[
-                            { index: 1, title: "Рейсы", path: '/' },
+                            { index: 1, title: "Все рейсы", path: '/' },
                             { index: 2, title: "Личный кабинет" }
                         ]}
                     />
                     <h1 className={st.title}>Личный кабинет</h1>
-                    <div>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Полное имя">
-                            <div className={st.formInput}>
-                                <DlInput
-                                    value={secondName}
-                                    disabled={!isEditing}
-                                    placeholder="Фамилия"
-                                    onChange={ev => setSecondName(ev.target.value)}
-                                    wrapperClass={st.input}
+                    <div className={cx(st.item, st.flex)}>
+                        <div>
+                            <DlFormItem className={st.formItem} label="Фамилия">
+                                <DlInput value={secondName}
+                                         disabled
+                                         wrapperClass={st.input}
                                 />
-                            </div>
-                            <div className={st.formInput}>
-                                <DlInput
-                                    placeholder="Имя"
-                                    disabled={!isEditing}
-                                    value={firstName}
-                                    onChange={ev => setFirstName(ev.target.value)}
-                                    wrapperClass={st.input}
+                            </DlFormItem>
+                        </div>
+
+                        <div>
+                            <DlFormItem className={st.formItem} label="Имя">
+                                <DlInput value={firstName}
+                                         disabled
+                                         wrapperClass={st.input}
                                 />
-                            </div>
-                            <div className={st.formInput}>
-                                <DlInput
-                                    placeholder="Отчество"
-                                    onChange={ev => setMiddleName(ev.target.value)}
-                                    wrapperClass={st.input}
-                                    value={middleName}
-                                    disabled={!isEditing}
+                            </DlFormItem>
+                        </div>
+                    </div>
+
+                    <div className={cx(st.item, st.flex)}>
+                        <div>
+                            <DlFormItem className={st.formItem} label="Логин">
+                                <DlInput value={login}
+                                         disabled
+                                         wrapperClass={st.input}
                                 />
-                            </div>
-                        </DlFormItem>
-                        <DlFormItem className={st.formItem} innerClassName={st.formItemInner} multiple label="Логин, пароль и пасспорт">
-                            <div className={st.formInput}>
-                                <DlInput
-                                    value={login}
-                                    disabled={!isEditing}
-                                    placeholder="Логин"
-                                    onChange={ev => setLogin(ev.target.value)}
-                                    wrapperClass={st.input}
+                            </DlFormItem>
+                        </div>
+
+                        <div>
+                            <DlFormItem className={st.formItem} label="Пасспорт">
+                                <DlInput value={passport}
+                                         disabled
+                                         wrapperClass={st.input}
                                 />
-                            </div>
-                            <div className={st.formInput}>
-                                <DlInput
-                                    placeholder="Пароль"
-                                    disabled={!isEditing}
-                                    value={password}
-                                    onChange={ev => setPassword(ev.target.value)}
-                                    wrapperClass={st.input}
-                                />
-                            </div>
-                            <div className={st.formInput}>
-                                <DlInput
-                                    value={passport}
-                                    disabled
-                                    placeholder="Пасспорт"
-                                    onChange={ev => setPassport(ev.target.value)}
-                                    wrapperClass={st.input}
-                                />
-                            </div>
-                        </DlFormItem>
+                            </DlFormItem>
+                        </div>
                     </div>
 
                     <div className={st.footer_buttons}>

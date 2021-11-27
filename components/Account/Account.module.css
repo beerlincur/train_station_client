@@ -18,7 +18,14 @@
 }
 
 .formItem {
-    margin-top: 24px;
+    flex-grow: 1;
+    /* margin-right: 16px; */
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-bottom: 16px;
+}
+.formItem:last-of-type {
+    margin-right: 0;
 }
 .formItemInner {
     flex-wrap: wrap;
@@ -94,6 +101,16 @@
 .checkbox_div {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.item {
+    margin-top: 1rem;
+}
+.flex {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
 }
 /* для экранов больше 600px */
 @media screen and (min-width: 600px) {
