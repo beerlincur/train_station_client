@@ -5,13 +5,15 @@ import ticket from './ticket'
 import race from "./race";
 import order from "./order";
 import road from "./road";
+import station from "./station";
 
 const appReducers = combineReducers({
     user,
     ticket,
     race,
     order,
-    road
+    road,
+    station
 })
 
 const rootReducer = (state, action) => {

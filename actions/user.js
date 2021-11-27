@@ -9,6 +9,8 @@ export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const UPDATE_PROFILE_LOADING = "UPDATE_PROFILE_LOADING";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
 export const CLEAR_STORE = "CLEAR_STORE";
+export const CONDUCTORS_LIST_LOADING = "CONDUCTORS_LIST_LOADING";
+export const GET_CONDUCTORS_LIST_SUCCESS = "GET_CONDUCTORS_LIST_SUCCESS";
 
 
 const userActions = {
@@ -55,7 +57,6 @@ const userActions = {
             dispatch({ type: USER_LOADING, loader: true })
             try {
                 const resp = await axios.post(`http://localhost:8000/api/register`, userData)
-                // dispatch({ type: GET_USER_SUCCESS, user: resp.data })
                 if (typeof callback === "function") callback.call();
             } catch (error) {
                 DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 })
@@ -93,6 +94,23 @@ const userActions = {
             }
         }
     },
+    getAllConductors: (callback) => {
+        return async dispatch => {
+            dispatch({ type: CONDUCTORS_LIST_LOADING, conductorsListLoader: true })
+            try {
+                const resp = await axios.get(`http://localhost:8000/api/conductors/all`, getTokenConfig())
+                dispatch({ type: GET_CONDUCTORS_LIST_SUCCESS, conductorsList: resp.data })
+
+                if (typeof callback === "function") {
+                    callback.call();
+                }
+            } catch (error) {
+                DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 })
+            } finally {
+                dispatch({ type: CONDUCTORS_LIST_LOADING, conductorsListLoader: false })
+            }
+        }
+    }
 }
 
 export default userActions;

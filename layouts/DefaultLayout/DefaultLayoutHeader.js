@@ -42,9 +42,9 @@ const DefaultLayoutHeader = () => {
                         <div className={st.link}>
                             <LayoutNavLink title="Проводники" icon="laborants" href="/conductors" />
                         </div>
-                        <div className={st.link}>
-                            <LayoutNavLink title="Поезда" icon="request" href="/trains" />
-                        </div>
+                        {/*<div className={st.link}>*/}
+                        {/*    <LayoutNavLink title="Поезда" icon="request" href="/trains" />*/}
+                        {/*</div>*/}
                         <div className={st.link}>
                             <LayoutNavLink title="Станции" icon="request" href="/stations" />
                         </div>

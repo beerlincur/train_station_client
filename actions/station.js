@@ -2,16 +2,16 @@ import DomNotification from "../components/Shared/DomNotification";
 import {getTokenConfig} from "../utils/utils";
 import axios from "axios";
 
-export const ROAD_LIST_LOADING = "ROAD_LIST_LOADING";
-export const GET_ROAD_LIST_SUCCESS = "GET_ROAD_LIST_SUCCESS";
+export const STATION_LIST_LOADING = "STATION_LIST_LOADING";
+export const GET_STATION_LIST_SUCCESS = "GET_STATION_LIST_SUCCESS";
 
-const roadActions = {
-    getAllRoads: (callback, onError) => {
+const stationActions = {
+    getAllStations: (callback, onError) => {
         return async dispatch => {
-            dispatch({ type: ROAD_LIST_LOADING, loader: true });
+            dispatch({ type: STATION_LIST_LOADING, loader: true });
             try {
-                const resp = await axios.get(`http://localhost:8000/api/roads/all`, getTokenConfig());
-                dispatch({ type: GET_ROAD_LIST_SUCCESS, roadsList: resp.data });
+                const resp = await axios.get(`http://localhost:8000/api/stations/all`, getTokenConfig());
+                dispatch({ type: GET_STATION_LIST_SUCCESS, stationsList: resp.data });
 
                 if (typeof callback === "function") {
                     callback.call();
@@ -22,10 +22,10 @@ const roadActions = {
                     onError.call();
                 }
             } finally {
-                dispatch({ type: ROAD_LIST_LOADING, loader: false })
+                dispatch({ type: STATION_LIST_LOADING, loader: false })
             }
         }
     }
 }
 
-export default roadActions
+export default stationActions

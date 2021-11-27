@@ -11,7 +11,7 @@ const ticketActions = {
         return async dispatch => {
             dispatch({ type: TICKET_LIST_LOADING, loader: true });
             try {
-                const resp = await axios.get(`http://localhost:8000/api/tickets/feed`, getTokenConfig());
+                const resp = await axios.get(`http://localhost:8000/api/tickets/all`, getTokenConfig());
                 dispatch({ type: GET_TICKET_LIST_SUCCESS, ticketsList: resp.data });
 
                 if (typeof callback === "function") {

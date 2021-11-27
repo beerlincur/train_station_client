@@ -10,7 +10,7 @@ const raceActions = {
         return async dispatch => {
             dispatch({ type: RACE_LIST_LOADING, loader: true });
             try {
-                const resp = await axios.get(`http://localhost:8000/api/races/feed`, getTokenConfig());
+                const resp = await axios.get(`http://localhost:8000/api/races/all`, getTokenConfig());
                 dispatch({ type: GET_RACE_LIST_SUCCESS, racesList: resp.data });
 
                 if (typeof callback === "function") {
