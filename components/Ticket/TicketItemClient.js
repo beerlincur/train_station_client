@@ -4,14 +4,14 @@ import cx from "classnames";
 import { useRouter } from "next/router";
 import DlTag from "../Shared/Tag";
 import TicketInfo from "./TicketInfo";
-import {convertDate} from "../../utils/utils";
+import {convertDate, ROLE} from "../../utils/utils";
 import ApplicationsDocument from "../Shared/Document/Document";
 import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
 import DlButton from "../Shared/Button";
 import orderActions from "../../actions/order";
 import DomNotification from "../Shared/DomNotification";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const roadHeaders = [
@@ -33,6 +33,8 @@ const TicketItemClient = props => {
     const footerContentRef = useRef(null)
 
     const [isRoadCollapsed, setIsRoadCollapsed] = useState(true)
+
+    const { currentUser } = useSelector(state => state.user)
 
     const tag = props.is_bought ? {
         color: 'error',
@@ -82,7 +84,7 @@ const TicketItemClient = props => {
                         <ApplicationsDocument title={`${props.arrival_station.station.name}`} timeText={`${convertDate(props.arrival_station.arrival_time, { format: "dd.LL.yyyy в HH:mm" })}` }/>
                     </div>
                 </div>
-                {!props.is_bought &&
+                {!props.is_bought && new Date() < new Date(props.departure_station.departure_time) && currentUser.role_id === ROLE.client &&
                 <div className={st.buy_button}>
                     <DlButton size="sm" type="primary" onClick={onBuyClicked}>Купить</DlButton>
                 </div>
