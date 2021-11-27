@@ -11,6 +11,7 @@ import userActions from "../../../actions/user"
 import InputMask from "react-input-mask"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import {ROLE} from "../../../utils/utils";
 
 
 const Register = () => {
@@ -22,7 +23,7 @@ const Register = () => {
 
 
     const handleSubmit = (values) => {
-        dispatch(userActions.registerUser({...values, role_id: 1}))
+        dispatch(userActions.registerUser({...values, role_id: ROLE.client}))
     }
 
     return (
