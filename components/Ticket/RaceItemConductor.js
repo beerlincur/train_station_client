@@ -90,7 +90,11 @@ const RoadItemConductor = props => {
             })
 
     const onMarkInTrain = (rowData) => {
-        dispatch(ticketActions.updateTicketIsInTrain(rowData.ticketId))
+        dispatch(ticketActions.updateTicketIsInTrain(rowData.ticketId, 1))
+    }
+
+    const onMarkNotInTrain = (rowData) => {
+        dispatch(ticketActions.updateTicketIsInTrain(rowData.ticketId, 0))
     }
 
     return (
@@ -139,7 +143,13 @@ const RoadItemConductor = props => {
                                         <>
                                             {rowData.isInTrain === "Да" ?
                                                 <div>
-                                                    Прибыл
+                                                    <DlButton
+                                                        type="primary"
+                                                        size="sm"
+                                                        onClick={() => onMarkNotInTrain(rowData)}
+                                                    >
+                                                        Отметить 'Нет'
+                                                    </DlButton>
                                                 </div>
                                                 :
                                                 <div>
@@ -148,7 +158,7 @@ const RoadItemConductor = props => {
                                                         size="sm"
                                                         onClick={() => onMarkInTrain(rowData)}
                                                     >
-                                                        Отметить
+                                                        Отметить 'Да'
                                                     </DlButton>
                                                 </div>
                                             }

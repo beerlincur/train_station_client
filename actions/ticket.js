@@ -48,11 +48,11 @@ const ticketActions = {
             }
         }
     },
-    updateTicketIsInTrain: (ticketId, callback, onError) => {
+    updateTicketIsInTrain: (ticketId, is_in_train, callback, onError) => {
         return async dispatch => {
             dispatch({ type: RACE_LIST_LOADING, loader: true });
             try {
-                const body = JSON.stringify({ticket_id: ticketId});
+                const body = JSON.stringify({ticket_id: ticketId, is_in_train: is_in_train});
                 const resp = await axios.put(`http://localhost:8000/api/ticket/set_is_in_train`, body, getTokenConfig());
                 dispatch({ type: GET_RACE_LIST_SUCCESS, racesList: resp.data });
 
