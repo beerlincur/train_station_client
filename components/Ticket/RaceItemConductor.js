@@ -7,6 +7,9 @@ import {convertDate} from "../../utils/utils";
 import ApplicationsDocument from "../Shared/Document/Document";
 import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
+import DlButton from "../Shared/Button";
+import ticketActions from "../../actions/ticket";
+import {useDispatch} from "react-redux";
 
 
 const ticketsHeaders = [
@@ -30,13 +33,14 @@ const roadHeaders = [
 
 const RoadItemConductor = props => {
     const { push } = useRouter()
+    const dispatch = useDispatch()
 
     const onFooterClick = ev => {
         ev.stopPropagation()
     }
 
     const getTicketRowClassName = (index, rowData) => {
-        return rowData.isBought ? 'pinkRow' : 'greenCol'
+        return rowData.isInTrain === "Да" ? 'greenCol' : 'pinkRow'
     }
 
     const footerContentRef = useRef(null)
@@ -85,6 +89,9 @@ const RoadItemConductor = props => {
                 }
             })
 
+    const onMarkInTrain = (rowData) => {
+        dispatch(ticketActions.updateTicketIsInTrain(rowData.ticketId))
+    }
 
     return (
         <div
@@ -128,6 +135,25 @@ const RoadItemConductor = props => {
                                     headers={ticketsHeaders}
                                     tableData={ticketsTableData}
                                     rowClassName={getTicketRowClassName}
+                                    isInTrain={({ rowData }) => (
+                                        <>
+                                            {rowData.isInTrain === "Да" ?
+                                                <div>
+                                                    Прибыл
+                                                </div>
+                                                :
+                                                <div>
+                                                    <DlButton
+                                                        type="primary"
+                                                        size="sm"
+                                                        onClick={() => onMarkInTrain(rowData)}
+                                                    >
+                                                        Отметить
+                                                    </DlButton>
+                                                </div>
+                                            }
+                                        </>
+                                    )}
                                 />
                             </div>
                         </div>
