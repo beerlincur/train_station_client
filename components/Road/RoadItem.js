@@ -43,7 +43,6 @@ const RoadItem = props => {
             name: station.name,
         }
     })
-
     return (
         <div
             className={cx(st.application, st.isDone)}
@@ -73,7 +72,7 @@ const RoadItem = props => {
                         <div className={cx(st.item, st.flex)}>
                             <div>
                                 <DlFormItem className={st.formItem} label="Кол-во заказов">
-                                    <DlInput value={props.amount_of_orders}
+                                    <DlInput value={props.amount_of_orders || "Нет заказов"}
                                              disabled
                                              wrapperClass={st.input}
                                     />

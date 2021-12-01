@@ -1,11 +1,16 @@
 import st from "./index.module.css";
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useRouter} from "next/router";
 import DlHeadTitle from "../../components/Shared/HeadTitle";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import RoadItem from "../../components/Road/RoadItem";
 import roadActions from "../../actions/road";
+import DomNotification from "../../components/Shared/DomNotification";
+import DlFormItem from "../../components/Shared/FormItem/FormItem";
+import DlInput from "../../components/Shared/Input";
+import DlModal from "../../components/Shared/Modal";
+import DlButton from "../../components/Shared/Button";
 
 
 const RoadsPage = () => {
@@ -14,17 +19,48 @@ const RoadsPage = () => {
 
     const { roadsList, loader } = useSelector(state => state.road)
 
+    const [addRoadModalVisible, setAddRoadModalVisible] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [roadName, setRoadName] = useState("")
+
     useEffect(() => {
         dispatch(roadActions.getAllRoads());
     }, [])
+
+    const onAddRoad = () => {
+        setAddRoadModalVisible(true);
+    }
+
+    const handleAddRoadModalClose = () => {
+        setAddRoadModalVisible(false);
+        setRoadName('');
+    }
+
+    const onAddRoadClicked = () => {
+        const obj = {
+            name: roadName
+        }
+
+        dispatch(roadActions.addRoad(obj, () => {
+            DomNotification.success({ title: "Направление успешно добавлено", showClose: true, duration: 5000 });
+            setIsLoading(false);
+            setAddRoadModalVisible(false);
+            setRoadName('');
+        }))
+    }
 
     return (
         <>
             <DlHeadTitle title={`Направления`} />
             <div className={st.title_container}>
-                <div className={st.main}>
-                    <h1 className={st.title}>Направления</h1>
-                </div>
+                <h1 className={st.title}>Направления</h1>
+                <DlButton
+                    type="success"
+                    onClick={onAddRoad}
+                    loading={isLoading}
+                >
+                    <span>Добавить</span>
+                </DlButton>
             </div>
             <div className={st.applicationsList}>
                 {loader ?
@@ -43,6 +79,26 @@ const RoadsPage = () => {
                     )
                 }
             </div>
+            <DlModal
+                title="Добавление направления"
+                shouldCloseOnOverlayClick={false}
+                visible={addRoadModalVisible}
+                onRequestClose={handleAddRoadModalClose}
+                onSave={onAddRoadClicked}
+                saving={isLoading}
+            >
+                <div className={st.formAdd}>
+                    <div className={st.formAddItem}>
+                        <DlFormItem className={st.formAddItemInner} label="Введите название направления">
+                            <DlInput
+                                value={roadName || ""}
+                                onChange={(ev) => setRoadName(ev.target.value)}
+                                placeholder="Название..."
+                            />
+                        </DlFormItem>
+                    </div>
+                </div>
+            </DlModal>
         </>
     )
 }
