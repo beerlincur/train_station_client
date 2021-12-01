@@ -29,6 +29,26 @@
     padding: 14px 16px;
     flex-wrap: wrap;
 }
+.formItem {
+    flex-grow: 1;
+    /* margin-right: 16px; */
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-bottom: 16px;
+}
+.formItem:last-of-type {
+    margin-right: 0;
+}
+.item {
+    margin-top: 1rem;
+}
+.flex {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
 .footer {
     padding: 0 16px 14px;
     cursor: initial;

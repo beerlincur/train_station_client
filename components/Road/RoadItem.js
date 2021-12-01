@@ -8,6 +8,8 @@ import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
 import {useDispatch} from "react-redux";
 import TicketInfo from "../Ticket/TicketInfo";
+import DlFormItem from "../Shared/FormItem/FormItem";
+import DlInput from "../Shared/Input";
 
 
 const roadHeaders = [
@@ -68,6 +70,16 @@ const RoadItem = props => {
             <div className={st.footer} onClick={onFooterClick}>
                 <div className={cx(st.footerContent, { [st.isCollapsed]: isRoadCollapsed })} ref={footerContentRef}>
                     <div className={st.collapseSamples}>
+                        <div className={cx(st.item, st.flex)}>
+                            <div>
+                                <DlFormItem className={st.formItem} label="Кол-во заказов">
+                                    <DlInput value={props.amount_of_orders}
+                                             disabled
+                                             wrapperClass={st.input}
+                                    />
+                                </DlFormItem>
+                            </div>
+                        </div>
                         <div className={st.tableContainer}>
                             <div className={st.bigger_subtitle}>Проезжаемые станции</div>
                             <div className={st.table}>
