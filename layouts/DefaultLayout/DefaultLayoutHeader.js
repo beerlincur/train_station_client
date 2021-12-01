@@ -46,6 +46,9 @@ const DefaultLayoutHeader = () => {
                             <LayoutNavLink title="Поезда" icon="request" href="/trains" />
                         </div>
                         <div className={st.link}>
+                            <LayoutNavLink title="Пользователи" icon="laborants" href="/users" />
+                        </div>
+                        <div className={st.link}>
                             <LayoutNavLink title="Станции" icon="request" href="/stations" />
                         </div>
                     </>

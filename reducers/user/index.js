@@ -1,10 +1,18 @@
-import {GET_USER_SUCCESS, USER_LOADING, CONDUCTORS_LIST_LOADING, GET_CONDUCTORS_LIST_SUCCESS} from "../../actions/user";
+import {
+    GET_USER_SUCCESS,
+    USER_LOADING,
+    CONDUCTORS_LIST_LOADING,
+    GET_CONDUCTORS_LIST_SUCCESS,
+    USERS_LIST_LOADING, GET_USERS_LIST_SUCCESS
+} from "../../actions/user";
 
 const initialState = {
     currentUser: null,
     loader: false,
     conductorsList: [],
-    conductorsListLoader: false
+    conductorsListLoader: false,
+    usersList: [],
+    usersListLoader: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -31,6 +39,18 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 conductorsList: action.conductorsList,
+            };
+
+        case USERS_LIST_LOADING:
+            return {
+                ...state,
+                usersListLoader: !!action.usersListLoader,
+            };
+
+        case GET_USERS_LIST_SUCCESS:
+            return {
+                ...state,
+                usersList: action.usersList,
             };
 
         default:

@@ -11,6 +11,8 @@ export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
 export const CLEAR_STORE = "CLEAR_STORE";
 export const CONDUCTORS_LIST_LOADING = "CONDUCTORS_LIST_LOADING";
 export const GET_CONDUCTORS_LIST_SUCCESS = "GET_CONDUCTORS_LIST_SUCCESS";
+export const USERS_LIST_LOADING = "USERS_LIST_LOADING";
+export const GET_USERS_LIST_SUCCESS = "GET_USERS_LIST_SUCCESS";
 
 
 const userActions = {
@@ -108,6 +110,23 @@ const userActions = {
                 DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 })
             } finally {
                 dispatch({ type: CONDUCTORS_LIST_LOADING, conductorsListLoader: false })
+            }
+        }
+    },
+    getAllUsers: (callback) => {
+        return async dispatch => {
+            dispatch({ type: USERS_LIST_LOADING, conductorsListLoader: true })
+            try {
+                const resp = await axios.get(`http://localhost:8000/api/users/all`, getTokenConfig())
+                dispatch({ type: GET_USERS_LIST_SUCCESS, usersList: resp.data })
+
+                if (typeof callback === "function") {
+                    callback.call();
+                }
+            } catch (error) {
+                DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 })
+            } finally {
+                dispatch({ type: USERS_LIST_LOADING, conductorsListLoader: false })
             }
         }
     }
