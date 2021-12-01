@@ -6,6 +6,7 @@ import race from "./race";
 import order from "./order";
 import road from "./road";
 import station from "./station";
+import train from "./train";
 
 const appReducers = combineReducers({
     user,
@@ -13,7 +14,8 @@ const appReducers = combineReducers({
     race,
     order,
     road,
-    station
+    station,
+    train
 })
 
 const rootReducer = (state, action) => {
