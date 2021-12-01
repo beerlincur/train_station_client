@@ -36,6 +36,29 @@
     line-height: 19px;
     color: #969696;
 }
+.formAddItem {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+.formAddItem:last-of-type {
+    margin-bottom: 0;
+}
+.formAddItemInline {
+    flex-wrap: wrap;
+}
+.formAddItemInner {
+    margin-bottom: 1rem;
+}
+.formAddItemInner:last-of-type {
+    margin-bottom: 0;
+}
+.formAddItemInput {
+    margin-right: 1rem;
+}
+.formAdd {
+
+}
 
 @media screen and (min-width: 600px) {
     .createButton {
