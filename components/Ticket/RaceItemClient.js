@@ -100,7 +100,7 @@ const RoadItemClient = props => {
                 <div className={cx(st.status, st.statusDone)}>
                     <div className={st.document}>
                         <ApplicationsDocument
-                            title={`${(props.stations[0] || props.stations[0].station.name) || "Нет станции"}`}
+                            title={`${(props.stations[0] && props.stations[0].station.name) || "Нет станции"}`}
                           timeText={`${(props.stations[0] &&
                               convertDate(props.stations[0].departure_time, { format: "dd.LL.yyyy в HH:mm" })) || "Нет станции"}`} />
                     </div>
