@@ -61,7 +61,7 @@ export const ROLE = {
 
 export const ROLE_RUSSIAN = {
     1: "Клиент",
-    2: "Кондуктор",
+    2: "Проводник",
     3: "Админ"
 }
 
