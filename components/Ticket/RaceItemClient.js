@@ -4,10 +4,14 @@ import cx from "classnames";
 import { useRouter } from "next/router";
 import DlTag from "../Shared/Tag";
 import TicketInfo from "./TicketInfo";
-import {convertDate} from "../../utils/utils";
+import {convertDate, ROLE} from "../../utils/utils";
 import ApplicationsDocument from "../Shared/Document/Document";
 import DlIcon from "../Shared/Icon";
 import DlTable from "../Shared/Table";
+import DlButton from "../Shared/Button";
+import {useDispatch, useSelector} from "react-redux";
+import raceActions from "../../actions/race";
+import DomNotification from "../Shared/DomNotification";
 
 
 const ticketsHeaders = [
@@ -30,6 +34,7 @@ const roadHeaders = [
 
 const RoadItemClient = props => {
     const { push } = useRouter()
+    const dispatch = useDispatch()
 
     const onFooterClick = ev => {
         ev.stopPropagation()
@@ -40,6 +45,8 @@ const RoadItemClient = props => {
     }
 
     const footerContentRef = useRef(null)
+
+    const { currentUser } = useSelector(state => state.user)
 
     const [isRoadCollapsed, setIsRoadCollapsed] = useState(true)
 
@@ -83,6 +90,12 @@ const RoadItemClient = props => {
             isBought: ticket.is_bought
         }
     })
+
+    const onDeleteRaceClicked = () => {
+        dispatch(raceActions.deleteRace(props.race_number, () => {
+            DomNotification.success({ title: "Рейс успешно удален, удалены билеты и отменены заказы", showClose: true, duration: 5000 });
+        }))
+    }
 
     return (
         <div
@@ -136,6 +149,14 @@ const RoadItemClient = props => {
                                 />
                             </div>
                         </div>
+                        {currentUser.role_id === ROLE.admin &&
+                            <DlButton
+                                type="error"
+                                onClick={onDeleteRaceClicked}
+                            >
+                                <span>Удалить рейс</span>
+                            </DlButton>
+                        }
                     </div>
                 </div>
                 <div className={st.footerTitle} onClick={() => setIsRoadCollapsed(!isRoadCollapsed)}>
