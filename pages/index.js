@@ -16,12 +16,14 @@ import DlSelectAdvanced from "../components/Shared/SelectAdvanced";
 import stationActions from "../actions/station";
 import trainActions from "../actions/train";
 import DlInput from "../components/Shared/Input";
+import {ROLE} from "../utils/utils";
 
 
 const IndexPage = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
 
+  const { currentUser } = useSelector(state => state.user)
   const { racesList, loaderRaces } = useSelector(state => state.race)
     const { roadsList, loaderRoads } = useSelector(state => state.road)
     const { stationsList, loaderStations } = useSelector(state => state.station)
@@ -31,13 +33,13 @@ const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(false)
 
     const [roadOptions, setRoadOptions] = useState([])
-    const [roadSelected, setRoadSelected] = useState(-1)
+    const [roadSelected, setRoadSelected] = useState({})
 
     const [stationOptions, setStationOptions] = useState([])
-    const [stationSelected, setStationSelected] = useState(-1)
+    const [stationSelected, setStationSelected] = useState({})
 
     const [trainOptions, setTrainOptions] = useState([])
-    const [trainSelected, setTrainSelected] = useState(-1)
+    const [trainSelected, setTrainSelected] = useState({})
 
     const [numInRoad, setNumInRoad] = useState(0)
     const [arrivalTime, setArrivalTime] = useState("")
@@ -92,9 +94,9 @@ const IndexPage = () => {
 
   const handleAddRoadStationModalClose = () => {
       setAddRoadStationModalVisible(false);
-      setRoadSelected(-1);
-      setStationSelected(-1);
-      setTrainSelected(-1);
+      setRoadSelected({});
+      setStationSelected({});
+      setTrainSelected({});
   }
 
   const onAddRoadStationClicked = () => {
@@ -112,9 +114,9 @@ const IndexPage = () => {
           DomNotification.success({ title: "Станция маршрута успешно добавлен", showClose: true, duration: 5000 });
           setIsLoading(false);
           setAddRoadStationModalVisible(false);
-          setRoadSelected(-1);
-          setStationSelected(-1);
-          setTrainSelected(-1);
+          setRoadSelected({});
+          setStationSelected({});
+          setTrainSelected({});
       }))
   }
 
@@ -123,13 +125,15 @@ const IndexPage = () => {
         <DlHeadTitle title="Рейсы" />
         <div className={st.title_container}>
           <h1 className={st.title}>Рейсы</h1>
-            <DlButton
-                type="success"
-                onClick={onAddRoadStation}
-                loading={isLoading}
-            >
-                <span>Добавить станцию маршрута</span>
-            </DlButton>
+            {currentUser.role_id === ROLE.admin &&
+                <DlButton
+                    type="success"
+                    onClick={onAddRoadStation}
+                    loading={isLoading}
+                >
+                    <span>Добавить станцию маршрута</span>
+                </DlButton>
+            }
         </div>
         <div className={st.applicationsList}>
           {loaderRaces ?
@@ -205,7 +209,7 @@ const IndexPage = () => {
               <div className={st.formAddItem}>
                   <DlFormItem className={st.formAddItemInner} label="Введите номер по счету станции в маршруте">
                       <DlInput
-                          value={numInRoad || -1}
+                          value={numInRoad}
                           onChange={(ev) => setNumInRoad(ev.target.value)}
                           placeholder="Номер по счету..."
                       />
@@ -216,7 +220,7 @@ const IndexPage = () => {
               <div className={st.formAddItem}>
                   <DlFormItem className={st.formAddItemInner} label="Введите время прибытия на станцию">
                       <DlInput
-                          value={arrivalTime || -1}
+                          value={arrivalTime}
                           onChange={(ev) => setArrivalTime(ev.target.value)}
                           placeholder="Время прибытия..."
                       />
@@ -227,7 +231,7 @@ const IndexPage = () => {
               <div className={st.formAddItem}>
                   <DlFormItem className={st.formAddItemInner} label="Введите отбытия со станции">
                       <DlInput
-                          value={departureTime || -1}
+                          value={departureTime}
                           onChange={(ev) => setDepartureTime(ev.target.value)}
                           placeholder="Время отбытия..."
                       />
@@ -238,7 +242,7 @@ const IndexPage = () => {
               <div className={st.formAddItem}>
                   <DlFormItem className={st.formAddItemInner} label="Номер рейса">
                       <DlInput
-                          value={raceNumber || -1}
+                          value={raceNumber}
                           onChange={(ev) => setRaceNumber(ev.target.value)}
                           placeholder="Номер рейса..."
                       />

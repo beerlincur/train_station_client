@@ -68,6 +68,27 @@ const ticketActions = {
                 dispatch({ type: RACE_LIST_LOADING, loader: false })
             }
         }
+    },
+    addTicket: (obj, callback, onError) => {
+        return async dispatch => {
+            dispatch({ type: TICKET_LIST_LOADING, loader: true });
+            try {
+                const body = JSON.stringify(obj);
+                const resp = await axios.post(`http://localhost:8000/api/ticket/create`, body, getTokenConfig());
+                dispatch({ type: GET_TICKET_LIST_SUCCESS, ticketsList: resp.data });
+
+                if (typeof callback === "function") {
+                    callback.call();
+                }
+            } catch (error) {
+                DomNotification.error({ title: "Произошла непредвиденная ошибка!", showClose: true, duration: 2500 });
+                if (typeof onError === "function") {
+                    onError.call();
+                }
+            } finally {
+                dispatch({ type: TICKET_LIST_LOADING, loader: false })
+            }
+        }
     }
 }
 
