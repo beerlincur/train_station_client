@@ -11,12 +11,14 @@ import DlFormItem from "../../components/Shared/FormItem/FormItem";
 import DlInput from "../../components/Shared/Input";
 import DlModal from "../../components/Shared/Modal";
 import DlButton from "../../components/Shared/Button";
+import {ROLE} from "../../utils/utils";
 
 
 const RoadsPage = () => {
     const { push } = useRouter();
     const dispatch = useDispatch();
 
+    const { currentUser } = useSelector(state => state.user)
     const { roadsList, loader } = useSelector(state => state.road)
 
     const [addRoadModalVisible, setAddRoadModalVisible] = useState(false)
@@ -54,13 +56,15 @@ const RoadsPage = () => {
             <DlHeadTitle title={`Направления`} />
             <div className={st.title_container}>
                 <h1 className={st.title}>Направления</h1>
-                <DlButton
-                    type="success"
-                    onClick={onAddRoad}
-                    loading={isLoading}
-                >
-                    <span>Добавить</span>
-                </DlButton>
+                {currentUser.role_id === ROLE.admin &&
+                    <DlButton
+                        type="success"
+                        onClick={onAddRoad}
+                        loading={isLoading}
+                    >
+                        <span>Добавить</span>
+                    </DlButton>
+                }
             </div>
             <div className={st.applicationsList}>
                 {loader ?
